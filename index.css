@@ -3098,3 +3098,139 @@ body {
     }
 }
 
+/* Demo Hızlı İlerleme Menüsü (Floating Guide) Stilleri */
+.demo-guide-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15), var(--shadow-lg);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: var(--font-parents);
+    animation: slide-in-guide 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slide-in-guide {
+    from { transform: translateY(50px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.demo-guide-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    padding-bottom: 8px;
+}
+
+.guide-sparkle {
+    font-size: 1.2rem;
+    animation: sparkle-rotate 2s infinite linear;
+}
+
+@keyframes sparkle-rotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.demo-guide-header h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0;
+}
+
+.demo-guide-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.demo-guide-btn {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: var(--radius-sm);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--color-text-main);
+    font-family: var(--font-parents);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.demo-guide-btn:hover {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateX(4px);
+}
+
+.demo-guide-exit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--color-secondary), #3182ce);
+    color: white;
+    font-family: var(--font-kids);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.demo-guide-exit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(78, 168, 222, 0.4);
+    background: linear-gradient(135deg, #3182ce, #2b6cb0);
+}
+
+/* Mobil Uyumlu Grid Yapısı */
+@media (max-width: 768px) {
+    .demo-guide-panel {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 12px;
+        gap: 8px;
+    }
+    
+    .demo-guide-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .demo-guide-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .demo-guide-exit {
+        grid-column: span 2;
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}
+

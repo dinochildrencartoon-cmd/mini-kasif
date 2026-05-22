@@ -5,6 +5,19 @@
 class MiniKasifApp {
     constructor() {
         // 1. Varsayılan Durum (State) Yönetimi ve localStorage Yükleme
+        if (!localStorage.getItem('mk_initialized')) {
+            localStorage.setItem('mk_initialized', 'true');
+            localStorage.setItem('mk_stars', '25');
+            localStorage.setItem('mk_badges', JSON.stringify(["🔵 Mavi Kaşifi Rozeti"]));
+            localStorage.setItem('mk_missions', '1');
+            localStorage.setItem('mk_time_spent', '12');
+            localStorage.setItem('mk_completed_adventures', JSON.stringify(["colors_Mavi Rengi Keşfedelim"]));
+            localStorage.setItem('mk_progress', JSON.stringify({
+                colors: 20, numbers: 0, shapes: 0, animals: 0,
+                emotions: 0, manners: 0, english: 0, attention: 0
+            }));
+        }
+
         this.state = {
             starsCount: parseInt(localStorage.getItem('mk_stars')) || 0,
             unlockedBadges: JSON.parse(localStorage.getItem('mk_badges')) || [],
@@ -44,6 +57,7 @@ class MiniKasifApp {
         // Ses Sentezleyicisi (Text-to-Speech)
         this.speechSynth = window.speechSynthesis;
         this.ttsVoice = null;
+        this.toastTimeout = null;
 
         // Kategori Veritabanı (8 Kategori)
         this.categoriesData = {
@@ -136,9 +150,9 @@ class MiniKasifApp {
                 "videoVoice": "Ağaçtaki tatlı elmaların yardımıyla kırmızı rengini öğreniyoruz. Kırmızının canlılığını ve hayatımızdaki yerini keşfediyoruz."
             },
             {
-                "title": "Mavi Denizin Altında",
+                "title": "Mavi Rengi Keşfedelim",
                 "ageRecommendation": "3-4 Yaş",
-                "description": "Derin ve huzurlu denizlerin altındaki mavi dünyayı, sevimli mavi balıklar eşliğinde keşfe çıkıyoruz.",
+                "description": "Derin ve huzurlu gökyüzü ile denizlerin mavi dünyasını sevimli mavi balıklar eşliğinde keşfe çıkıyoruz.",
                 "quizzes": [
                     {
                         "question": "Gökyüzü ve denizler hangi renkle kaplıdır?",
@@ -204,17 +218,17 @@ class MiniKasifApp {
                         "hint": "Tekrar deneyelim: Rüzgarlı günde giydiğimiz montun mavi rengini arıyoruz."
                     }
                 ],
-                "mission": "Bardağına biraz su doldur ve ışığa tutarak suyun içinden geçen ışığı izle!",
-                "badge": "🌊 Mavi Deniz Rozeti",
-                "emoji": "🌊",
+                "mission": "Odandaki 3 tane mavi renkli nesneyi bulup anne veya babana göster!",
+                "badge": "🔵 Mavi Kaşifi Rozeti",
+                "emoji": "🔵",
                 "videoItems": [
                     {
-                        "emoji": "🌊",
-                        "label": "Mavi Denizin Altında",
+                        "emoji": "🔵",
+                        "label": "Mavi Rengi Keşfedelim",
                         "color": "var(--color-primary)"
                     }
                 ],
-                "videoVoice": "Derin ve huzurlu denizlerin altındaki mavi dünyayı, sevimli mavi balıklar eşliğinde keşfe çıkıyoruz."
+                "videoVoice": "Derin ve huzurlu gökyüzü ile denizlerin mavi dünyasını sevimli mavi balıklar eşliğinde keşfe çıkıyoruz."
             },
             {
                 "title": "Sarı Güneş ve Parlak Yıldızlar",
@@ -3424,7 +3438,12 @@ class MiniKasifApp {
         document.querySelectorAll('.btn-exit-demo').forEach(btn => {
             btn.addEventListener('click', () => {
                 this.navigateTo('landing-screen');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                    const section = document.getElementById('early-access-section');
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
             });
         });
 
@@ -3584,6 +3603,78 @@ class MiniKasifApp {
         if (btnBypassSleep) {
             btnBypassSleep.addEventListener('click', () => this.openParentGate('bypass-sleep'));
         }
+
+        // Demo Hızlı İlerleme Menüsü Butonları
+        const btnGuideVideo = document.getElementById('btn-guide-video');
+        if (btnGuideVideo) {
+            btnGuideVideo.addEventListener('click', () => {
+                const cat = this.categoriesData['colors'];
+                if (cat) {
+                    this.currentCategory = cat;
+                    this.currentView = 'adventures';
+                    const adv = cat.adventures.find(a => a.title === 'Mavi Rengi Keşfedelim');
+                    if (adv) {
+                        this.selectAdventure(adv);
+                        this.switchActivityTab('video');
+                    }
+                }
+            });
+        }
+        
+        const btnGuideQuiz = document.getElementById('btn-guide-quiz');
+        if (btnGuideQuiz) {
+            btnGuideQuiz.addEventListener('click', () => {
+                const cat = this.categoriesData['colors'];
+                if (cat) {
+                    this.currentCategory = cat;
+                    this.currentView = 'adventures';
+                    const adv = cat.adventures.find(a => a.title === 'Mavi Rengi Keşfedelim');
+                    if (adv) {
+                        this.selectAdventure(adv);
+                        this.switchActivityTab('quiz');
+                    }
+                }
+            });
+        }
+
+        const btnGuideMission = document.getElementById('btn-guide-mission');
+        if (btnGuideMission) {
+            btnGuideMission.addEventListener('click', () => {
+                const cat = this.categoriesData['colors'];
+                if (cat) {
+                    this.currentCategory = cat;
+                    this.currentView = 'adventures';
+                    const adv = cat.adventures.find(a => a.title === 'Mavi Rengi Keşfedelim');
+                    if (adv) {
+                        this.currentAdventure = adv;
+                        this.openOfflineMissionModal();
+                    }
+                }
+            });
+        }
+
+        const btnGuideBadge = document.getElementById('btn-guide-badge');
+        if (btnGuideBadge) {
+            btnGuideBadge.addEventListener('click', () => this.showMyBadges());
+        }
+
+        const btnGuideParent = document.getElementById('btn-guide-parent');
+        if (btnGuideParent) {
+            btnGuideParent.addEventListener('click', () => this.openParentGate('dashboard'));
+        }
+
+        const btnGuideExitEarly = document.getElementById('btn-guide-exit-early');
+        if (btnGuideExitEarly) {
+            btnGuideExitEarly.addEventListener('click', () => {
+                this.navigateTo('landing-screen');
+                setTimeout(() => {
+                    const section = document.getElementById('early-access-section');
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            });
+        }
     }
 
     // TTS Türkçe Sesi Yükleme
@@ -3742,6 +3833,12 @@ class MiniKasifApp {
                 targetScreen.classList.add('active');
             }, 50);
             this.activeScreen = screenId;
+        }
+
+        // Hızlı Yönlendirme Menüsünü Göster/Gizle
+        const guidePanel = document.getElementById('demo-guide-panel');
+        if (guidePanel) {
+            guidePanel.style.display = (screenId === 'landing-screen') ? 'none' : 'flex';
         }
 
         // Ekran bazlı özel işlemler
@@ -4067,6 +4164,14 @@ class MiniKasifApp {
         this.updateStarUI();
         this.saveState();
 
+        // Sıralı Toast Mesajları gösterimi
+        const toasts = [
+            "Harika! Macerayı tamamladın! 🏆",
+            "+50 Yıldız Kazandın! 🌟",
+            `${badgeName} Kazanıldı! 🎉`
+        ];
+        this.showToastSequence(toasts);
+
         this.speak(`Tebrikler! ${this.currentAdventure.title} macerasını tamamladın ve ${badgeName} kazandın!`);
 
         // Ekran dışı görev modalını tetikle
@@ -4186,7 +4291,10 @@ class MiniKasifApp {
                     this.saveState();
                 }
 
-                alert("Tebrikler! Ebeveyn olarak görevi onayladınız. Çocuğunuza 100 Ekstra Yıldız ve 'Süper Kâşif' rozeti eklendi!");
+                this.showToastSequence([
+                    "Görev onaylandı! 100 Ekstra Yıldız eklendi! 🌟",
+                    "Süper Kâşif rozeti kazanıldı! 🏃"
+                ]);
                 this.exitActivity();
                 break;
         }
@@ -4370,10 +4478,24 @@ class MiniKasifApp {
         if (!container) return;
 
         container.innerHTML = '';
-        const allBadges = Object.values(this.categoriesData).map(c => c.badge);
+        
+        // Rozetleri tüm kategoriler altındaki maceralardan toplayalım
+        const allBadges = [];
+        Object.values(this.categoriesData).forEach(cat => {
+            if (cat.adventures) {
+                cat.adventures.forEach(adv => {
+                    if (adv.badge && !allBadges.includes(adv.badge)) {
+                        allBadges.push(adv.badge);
+                    }
+                });
+            }
+        });
         
         // Ebeveyn tarafından verilen ekstra rozet
-        allBadges.push("🏃 Süper Kâşif");
+        const superBadge = "🏃 Süper Kâşif";
+        if (!allBadges.includes(superBadge)) {
+            allBadges.push(superBadge);
+        }
 
         allBadges.forEach(b => {
             const isUnlocked = this.state.unlockedBadges.includes(b);
@@ -4443,12 +4565,32 @@ class MiniKasifApp {
         const toast = document.getElementById('toast-notification');
         if (!toast) return;
 
+        if (this.toastTimeout) {
+            clearTimeout(this.toastTimeout);
+            toast.classList.remove('show');
+        }
+
         toast.innerText = message;
         toast.classList.add('show');
 
-        setTimeout(() => {
+        this.toastTimeout = setTimeout(() => {
             toast.classList.remove('show');
+            this.toastTimeout = null;
         }, 3000);
+    }
+
+    showToastSequence(messages) {
+        if (!messages || messages.length === 0) return;
+        
+        let index = 0;
+        const displayNext = () => {
+            if (index >= messages.length) return;
+            const msg = messages[index];
+            this.showToast(msg);
+            index++;
+            setTimeout(displayNext, 3500); // 3 saniye görünüm + 0.5 saniye kaybolma geçişi
+        };
+        displayNext();
     }
 
     // Konfeti Efekti (Canvas bazlı ve hafif)

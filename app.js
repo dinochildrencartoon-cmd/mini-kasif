@@ -363,7 +363,7 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
                         <div class="current-subscription-status" id="billing-status-box">
                             <div class="billing-status-info">
                                 <h3>Üyelik Tipi: <span id="current-membership-label" class="badge-free">Ücretsiz Paket</span></h3>
-                                <p id="membership-details-text">Tüm özelliklere erişmek için Premium pakete geçin.</p>
+                                <p id="membership-details-text">Ücretsiz planda Renkler ve Sayılar kategorilerinden sınırlı içerikler sunulmaktadır. Tüm özellikler için Premium plana geçiş planlanmaktadır.</p>
                             </div>
                         </div>
 
@@ -4967,7 +4967,7 @@ class MiniKasifApp {
         } else {
             label.innerText = 'Ücretsiz Paket';
             label.className = 'badge-free';
-            desc.innerText = 'Sadece Renkler ve Sayılar kategorileri açık. Tüm özellikler için Premium aboneliğe geçin.';
+            desc.innerText = 'Ücretsiz planda Renkler ve Sayılar kategorilerinden sınırlı içerikler sunulmaktadır. Gelişmiş ebeveyn özellikleri ve tüm içerikler için Premium plana geçiş planlanmaktadır.';
             checkoutForm.style.display = 'block';
             activeActions.style.display = 'none';
             billingBox.style.borderColor = '#cbd5e1';

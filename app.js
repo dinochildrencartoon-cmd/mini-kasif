@@ -8,7 +8,7 @@ class MiniKasifApp {
         if (!localStorage.getItem('mk_initialized')) {
             localStorage.setItem('mk_initialized', 'true');
             localStorage.setItem('mk_stars', '25');
-            localStorage.setItem('mk_badges', JSON.stringify(["🔵 Mavi Kaşifi Rozeti"]));
+            localStorage.setItem('mk_badges', JSON.stringify(["🔵 Mavi Kâşifi"]));
             localStorage.setItem('mk_missions', '1');
             localStorage.setItem('mk_time_spent', '12');
             localStorage.setItem('mk_completed_adventures', JSON.stringify(["colors_Mavi Rengi Keşfedelim"]));
@@ -155,71 +155,29 @@ class MiniKasifApp {
                 "description": "Derin ve huzurlu gökyüzü ile denizlerin mavi dünyasını sevimli mavi balıklar eşliğinde keşfe çıkıyoruz.",
                 "quizzes": [
                     {
-                        "question": "Gökyüzü ve denizler hangi renkle kaplıdır?",
-                        "options": [
-                            {
-                                "emoji": "🟠",
-                                "text": "Turuncu",
-                                "isCorrect": false
-                            },
-                            {
-                                "emoji": "🔵",
-                                "text": "Mavi",
-                                "isCorrect": true
-                            },
-                            {
-                                "emoji": "⭐️",
-                                "text": "Pembe",
-                                "isCorrect": false
-                            }
-                        ],
-                        "hint": "Bir daha bakalım: Bulutların arkasındaki gökyüzü hangi renkte parlar?"
-                    },
-                    {
-                        "question": "Mavi balık yüzgeçlerini sallarken hangi renkte görünür?",
+                        "question": "Hangisi mavi renklidir?",
                         "options": [
                             {
                                 "emoji": "🔵",
-                                "text": "Mavi",
+                                "text": "Gökyüzü",
                                 "isCorrect": true
                             },
                             {
-                                "emoji": "⭐️",
-                                "text": "Beyaz",
+                                "emoji": "🍌",
+                                "text": "Muz",
                                 "isCorrect": false
                             },
                             {
-                                "emoji": "⭐️",
-                                "text": "Siyah",
+                                "emoji": "🍅",
+                                "text": "Domates",
                                 "isCorrect": false
                             }
                         ],
-                        "hint": "İpucunu düşünelim: Balığımız denizin kendi rengiyle aynı renkte!"
-                    },
-                    {
-                        "question": "Hangisi mavi renkli bir giysidir?",
-                        "options": [
-                            {
-                                "emoji": "🟡",
-                                "text": "Sarı şapka",
-                                "isCorrect": false
-                            },
-                            {
-                                "emoji": "🔵",
-                                "text": "Mavi mont",
-                                "isCorrect": true
-                            },
-                            {
-                                "emoji": "🟢",
-                                "text": "Yeşil çorap",
-                                "isCorrect": false
-                            }
-                        ],
-                        "hint": "Tekrar deneyelim: Rüzgarlı günde giydiğimiz montun mavi rengini arıyoruz."
+                        "hint": "Bir daha bakalım. Mavi rengi gökyüzünde görebiliriz."
                     }
                 ],
-                "mission": "Odandaki 3 tane mavi renkli nesneyi bulup anne veya babana göster!",
-                "badge": "🔵 Mavi Kaşifi Rozeti",
+                "mission": "Odandaki 3 mavi nesneyi bulup anne veya babana göster.",
+                "badge": "🔵 Mavi Kâşifi",
                 "emoji": "🔵",
                 "videoItems": [
                     {
@@ -3422,6 +3380,7 @@ class MiniKasifApp {
             btnDemoStartKids.addEventListener('click', () => {
                 this.closeModal('demo-welcome-modal');
                 this.navigateTo('kids-dashboard');
+                this.showToast("Demo deneyimi başlatıldı.");
             });
         }
 
@@ -3431,6 +3390,7 @@ class MiniKasifApp {
             btnDemoStartParent.addEventListener('click', () => {
                 this.closeModal('demo-welcome-modal');
                 this.openParentGate('dashboard');
+                this.showToast("Demo deneyimi başlatıldı.");
             });
         }
 
@@ -4089,7 +4049,12 @@ class MiniKasifApp {
 
         if (isCorrect) {
             btnElement.classList.add('correct');
-            feedback.innerText = "🌟 Harika! Doğru cevap! 🎉";
+            if (this.currentAdventure && this.currentAdventure.title === "Mavi Rengi Keşfedelim") {
+                feedback.innerText = "Harika! Bir yıldız kazandın.";
+                this.showToast("Harika! Bir yıldız kazandın.");
+            } else {
+                feedback.innerText = "🌟 Harika! Doğru cevap! 🎉";
+            }
             feedback.classList.add('correct');
             feedback.style.display = 'block';
             this.playEffect('correct');
@@ -4101,9 +4066,14 @@ class MiniKasifApp {
             this.correctAnswersInSession++;
 
             // Konuş
-            const successMessages = ["Aferin sana!", "Harika gidiyorsun!", "Çok doğru!", "Süper bir kâşifsin!"];
-            const randomMsg = successMessages[Math.floor(Math.random() * successMessages.length)];
-            this.speak(randomMsg);
+            let speechMsg = "Aferin sana!";
+            if (this.currentAdventure && this.currentAdventure.title === "Mavi Rengi Keşfedelim") {
+                speechMsg = "Harika! Bir yıldız kazandın.";
+            } else {
+                const successMessages = ["Aferin sana!", "Harika gidiyorsun!", "Çok doğru!", "Süper bir kâşifsin!"];
+                speechMsg = successMessages[Math.floor(Math.random() * successMessages.length)];
+            }
+            this.speak(speechMsg);
 
             // Konfeti patlat
             this.triggerConfetti();
@@ -4165,14 +4135,24 @@ class MiniKasifApp {
         this.saveState();
 
         // Sıralı Toast Mesajları gösterimi
-        const toasts = [
+        let toasts = [
             "Harika! Macerayı tamamladın! 🏆",
             "+50 Yıldız Kazandın! 🌟",
             `${badgeName} Kazanıldı! 🎉`
         ];
+        let speechMsg = `Tebrikler! ${this.currentAdventure.title} macerasını tamamladın ve ${badgeName} kazandın!`;
+
+        if (this.currentAdventure && this.currentAdventure.title === "Mavi Rengi Keşfedelim") {
+            toasts = [
+                "Mavi Kâşifi rozeti kazanıldı.",
+                "Ebeveyn panelinde ilerleme güncellendi."
+            ];
+            speechMsg = "Tebrikler Mini Kâşif! Mavi Kâşifi rozetini kazandın.";
+        }
+
         this.showToastSequence(toasts);
 
-        this.speak(`Tebrikler! ${this.currentAdventure.title} macerasını tamamladın ve ${badgeName} kazandın!`);
+        this.speak(speechMsg);
 
         // Ekran dışı görev modalını tetikle
         setTimeout(() => {
@@ -4291,10 +4271,17 @@ class MiniKasifApp {
                     this.saveState();
                 }
 
-                this.showToastSequence([
-                    "Görev onaylandı! 100 Ekstra Yıldız eklendi! 🌟",
-                    "Süper Kâşif rozeti kazanıldı! 🏃"
-                ]);
+                if (this.currentAdventure && this.currentAdventure.title === "Mavi Rengi Keşfedelim") {
+                    this.showToastSequence([
+                        "Görev tamamlandı.",
+                        "Ebeveyn panelinde ilerleme güncellendi."
+                    ]);
+                } else {
+                    this.showToastSequence([
+                        "Görev onaylandı! 100 Ekstra Yıldız eklendi! 🌟",
+                        "Süper Kâşif rozeti kazanıldı! 🏃"
+                    ]);
+                }
                 this.exitActivity();
                 break;
         }

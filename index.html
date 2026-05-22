@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mini Kâşif; reklamsız, yaşa özel hazırlanan mini oyunlar ve ekrandan uzaklaştıran fiziksel görevlerle çocuklarınızın dijital süresini aktif ve güvenli bir gelişim macerasına dönüştürür.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; script-src 'self'; img-src 'self' data:;">
     <title>Mini Kâşif - Eğlenceli ve Güvenli Öğrenme Dünyası</title>
     <!-- Google Fonts: Çocuklar için Quicksand, Ebeveynler için Inter -->
@@ -32,12 +33,12 @@
                     <li><a href="#how-it-works">Nasıl Çalışır?</a></li>
                     <li><a href="#features">Özellikler</a></li>
                     <li><a href="#ethics">Güven</a></li>
-                    <li><a href="#" class="btn-demo-trigger">Demo</a></li>
+                    <li><a href="/demo" class="btn-demo-trigger">Demo</a></li>
                     <li><a href="#early-access-section">Erken Erişim</a></li>
                 </ul>
             </nav>
             <div class="header-actions">
-                <button class="btn btn-secondary btn-sm btn-demo-trigger">Demo'yu Başlat</button>
+                <a href="/demo" class="btn btn-secondary btn-sm btn-demo-trigger">Demo'yu Başlat</a>
                 <a href="#early-access-section" class="btn btn-primary btn-sm">Erken Erişime Katıl</a>
             </div>
         </header>
@@ -52,9 +53,9 @@
                     <a href="#early-access-section" class="btn btn-primary btn-lg pulse">
                         🚀 Erken Erişime Katıl
                     </a>
-                    <button class="btn btn-secondary btn-lg btn-demo-trigger">
+                    <a href="/demo" class="btn btn-secondary btn-lg btn-demo-trigger">
                         🎮 Demo'yu Başlat
-                    </button>
+                    </a>
                 </div>
                 <p class="hero-subtext">Mini Kâşif şu anda erken erişim aşamasındadır. İlk kullanıcı ailelerle birlikte geliştiriyoruz.</p>
             </div>
@@ -267,10 +268,10 @@
         <section id="demo-promo" class="demo-promo-section text-center">
             <div class="demo-promo-container">
                 <span class="section-tag">DENEYİMLE</span>
-                <h2>Mini Kâşif Dünyasını Keşfedin</h2>
-                <p>Çocuğunuzun deneyimleyeceği renkli kategorileri ve gelişim raporlarının yer aldığı ebeveyn panelini hemen canlı demomuzda test edebilirsiniz.</p>
+                <h2>Demo deneyimini inceleyin</h2>
+                <p>Mini Kâşif’in çocuk ekranı, mini quiz, ekran dışı görev ve ebeveyn paneli örneklerini demo sayfasında görebilirsiniz.</p>
                 <div class="demo-promo-actions">
-                    <button class="btn btn-secondary btn-lg btn-demo-trigger">🎮 Demo'yu Başlat</button>
+                    <a href="/demo" class="btn btn-secondary btn-lg btn-demo-trigger">🎮 Demo’yu Deneyin</a>
                     <a href="#early-access-section" class="btn btn-primary btn-lg">🚀 Erken Erişime Katıl</a>
                 </div>
             </div>
@@ -335,7 +336,7 @@
                         <li>✔️ Detaylı Haftalık Gelişim Grafik Raporları</li>
                         <li>✔️ Reklamsız, Güvenli ve Pedagojik Yapı</li>
                     </ul>
-                    <button class="btn btn-primary btn-block btn-demo-trigger">🎮 Premium'u Demo'da Deneyin</button>
+                    <a href="/demo" class="btn btn-primary btn-block btn-demo-trigger">🎮 Premium'u Demo'da Deneyin</a>
                     <p class="pricing-free-tier">Dilerseniz "Renkler" ve "Sayılar" kategorilerini sonsuza dek ücretsiz sürümle deneyebilirsiniz.</p>
                 </div>
                 
@@ -409,483 +410,7 @@
         </footer>
     </section>
 
-    <!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
-    <section id="kids-dashboard" class="screen">
-        <!-- Demo Uyarı Bannerı -->
-        <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
-        </div>
-        <header class="kids-header">
-            <button class="btn-back-circle" id="btn-back-to-landing">
-                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20,11H7.83L13.41,5.41L12,4L4,12L12,20L13.41,18.59L7.83,13H20V11Z"/></svg>
-            </button>
-            <div class="kids-header-title">
-                <h2>Merhaba Küçük Kâşif! 🌟</h2>
-                <p>Bugün hangi maceraya katılmak istersin?</p>
-            </div>
-            <button class="btn-parent-gate" id="btn-parent-gate-dashboard">
-                <span>Ebeveyn Alanı 🔒</span>
-            </button>
-        </header>
-
-        <main class="kids-categories">
-            <div class="categories-grid" id="categories-container">
-                <!-- Dinamik olarak app.js tarafından doldurulacak -->
-            </div>
-        </main>
-
-        <div class="kids-footer">
-            <div class="stars-counter">
-                <span class="star-icon">⭐</span>
-                <span id="total-stars-count">0</span> Yıldız Topladın!
-            </div>
-            <button class="btn-badges-view" id="btn-view-badges">
-                🏆 Rozetlerim
-            </button>
-        </div>
-    </section>
-
-    <!-- 3. ÇOCUK ETKİNLİK / OYUN EKRANI (KIDS ACTIVITY SCREEN) -->
-    <section id="kids-activity-screen" class="screen">
-        <!-- Demo Uyarı Bannerı -->
-        <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
-        </div>
-        <header class="activity-header">
-            <button class="btn-back-circle" id="btn-exit-activity">
-                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20,11H7.83L13.41,5.41L12,4L4,12L12,20L13.41,18.59L7.83,13H20V11Z"/></svg>
-            </button>
-            <div class="activity-category-title" id="activity-title">Renkler</div>
-            <div class="activity-progress-bar">
-                <div class="progress-fill" id="activity-progress-fill" style="width: 0%"></div>
-            </div>
-        </header>
-
-        <main class="activity-content">
-            <!-- TAB SEÇİMİ (VİDEO / QUIZ) -->
-            <div class="activity-tabs">
-                <button class="tab-btn active" id="tab-video">📺 İzle & Keşfet</button>
-                <button class="tab-btn" id="tab-quiz">🎮 Oyna & Pekiştir</button>
-            </div>
-
-            <!-- VİDEO / KEŞİF MODU -->
-            <div id="mode-video" class="activity-tab-content active">
-                <div class="video-container">
-                    <div class="interactive-video-sim" id="video-sim-canvas">
-                        <!-- Buraya CSS animasyonlu görsel öğretim kartı gelecek -->
-                    </div>
-                    <button class="btn-play-voice" id="btn-play-voice">
-                        🔊 Sesli Anlatımı Dinle
-                    </button>
-                </div>
-                <div class="video-instruction">
-                    <h3>Yukarıdaki sevimli şekilleri izle ve dinle!</h3>
-                    <p>Hazır olduğunda yukarıdaki <strong>"Oyna & Pekiştir"</strong> sekmesine geçerek ödül yıldızını kazan!</p>
-                </div>
-            </div>
-
-            <!-- QUIZ MODU -->
-            <div id="mode-quiz" class="activity-tab-content">
-                <div class="quiz-question-box">
-                    <button class="btn-sound-replay" id="btn-replay-question" title="Soruyu Tekrar Dinle">🔊</button>
-                    <h2 id="quiz-question-text">Hangisi mavi renklidir?</h2>
-                </div>
-
-                <div class="quiz-options-grid" id="quiz-options-container">
-                    <!-- Dinamik şıklar -->
-                </div>
-
-                <div class="quiz-feedback-banner" id="quiz-feedback">
-                    Soruyu cevaplayıp yıldızları topla! 🌟
-                </div>
-            </div>
-        </main>
-    </section>
-
-    <!-- ROZETLERİM MODALI (KIDS BADGES MODAL) -->
-    <div id="badges-modal" class="modal-overlay">
-        <div class="modal-card kids-modal">
-            <button class="modal-close" id="btn-close-badges">×</button>
-            <h2>Kâşif Rozetlerin 🏆</h2>
-            <p>Görevleri ve quizleri tamamlayarak kazandığın süper rozetler!</p>
-            <div class="badges-grid" id="badges-container">
-                <!-- Rozet kartları -->
-            </div>
-            <button class="btn btn-primary" id="btn-badges-confirm">Harika, Devam Et! 🚀</button>
-        </div>
-    </div>
-
-    <!-- EKRAN DIŞI GÖREV MODALI (OFFLINE MISSION MODAL) -->
-    <div id="mission-modal" class="modal-overlay">
-        <div class="modal-card kids-modal mission-card">
-            <div class="mission-icon">🏃✨</div>
-            <h2>Sıradaki Macera Ekran Dışında!</h2>
-            <div class="mission-text-container">
-                <p id="mission-description">Odandaki 3 tane mavi renkli nesneyi bulup anne veya babana göster!</p>
-            </div>
-            <div class="alert alert-info">
-                💡 <strong>Ebeveynlere Not:</strong> Ekran süresini dengelemek için bu görevi çocuğunuzla birlikte yapın.
-            </div>
-            <div class="mission-actions">
-                <button class="btn btn-primary btn-block" id="btn-claim-mission">
-                    Görevi Tamamladım! (Ebeveyn Onayı)
-                </button>
-                <button class="btn btn-text btn-block" id="btn-close-mission">
-                    Daha Sonra Yapacağım
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- EBEVEYN KİLİDİ MODALI (PARENT GATE MODAL) -->
-    <div id="parent-gate-modal" class="modal-overlay">
-        <div class="modal-card">
-            <button class="modal-close" id="btn-close-parent-gate">×</button>
-            <div class="lock-header">
-                <span class="lock-icon">🔒</span>
-                <h2>Sadece Anne & Babalar İçin</h2>
-                <p>Ebeveyn alanına geçmek için lütfen basit doğrulamayı tamamlayın.</p>
-            </div>
-            
-            <div class="gate-math-box">
-                <span id="gate-question">5 + 3 = ?</span>
-            </div>
-
-            <div class="gate-keypad">
-                <button class="key-btn" data-key="1">1</button>
-                <button class="key-btn" data-key="2">2</button>
-                <button class="key-btn" data-key="3">3</button>
-                <button class="key-btn" data-key="4">4</button>
-                <button class="key-btn" data-key="5">5</button>
-                <button class="key-btn" data-key="6">6</button>
-                <button class="key-btn" data-key="7">7</button>
-                <button class="key-btn" data-key="8">8</button>
-                <button class="key-btn" data-key="9">9</button>
-                <button class="key-btn" data-key="0">0</button>
-                <button class="key-btn btn-clear" id="btn-clear-gate">Temizle</button>
-            </div>
-
-            <div class="gate-input-display">
-                Cevabınız: <strong id="gate-input-val">-</strong>
-            </div>
-
-            <div id="gate-error" class="gate-error-msg">Yanlış cevap, lütfen tekrar deneyin.</div>
-
-            <div class="gate-actions">
-                <button class="btn btn-secondary btn-block" id="btn-submit-gate">Giriş Yap</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. EBEVEYN PANELİ (PARENT PORTAL) -->
-    <section id="parent-portal" class="screen">
-        <!-- Demo Uyarı Bannerı -->
-        <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
-        </div>
-
-        <header class="parent-header">
-            <div class="logo">
-                <span class="logo-icon">🚀</span>
-                <span class="logo-text">Örnek Ebeveyn Paneli</span>
-            </div>
-            <button class="btn btn-secondary btn-sm" id="btn-exit-parent-portal">Çocuk Moduna Dön 🧒</button>
-        </header>
-
-        <div class="parent-layout">
-            <!-- Yan Menü -->
-            <aside class="parent-sidebar">
-                <button class="sidebar-btn active" id="side-dashboard">
-                    📊 Gelişim Raporu
-                </button>
-                <button class="sidebar-btn" id="side-limit">
-                    ⏱️ Ekran Süresi Kontrolü
-                </button>
-                <button class="sidebar-btn" id="side-billing">
-                    💳 Üyelik & Abonelik
-                </button>
-                <button class="sidebar-btn" id="side-early-access">
-                    📋 Erken Erişim Başvurusu
-                </button>
-            </aside>
-
-            <!-- İçerik Alanı -->
-            <main class="parent-main">
-                <!-- A. GELİŞİM RAPORU SEKMESİ -->
-                <div id="parent-tab-dashboard" class="parent-tab-content active">
-                    <div class="parent-welcome-banner">
-                        <h2>Örnek Ebeveyn Paneli 👋</h2>
-                        <p>Bu panel, ebeveynlerin ileride görebileceği örnek kullanım ve gelişim özetini temsil eder.</p>
-                    </div>
-
-                    <!-- Özet Kartları -->
-                    <div class="stats-row">
-                        <div class="stat-card">
-                            <span class="stat-icon">⏱️</span>
-                            <div class="stat-info">
-                                <h4>Toplam Süre</h4>
-                                <p id="parent-stat-time">0 Dakika</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">⭐</span>
-                            <div class="stat-info">
-                                <h4>Kazanılan Yıldız</h4>
-                                <p id="parent-stat-stars">0 Yıldız</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">🏆</span>
-                            <div class="stat-info">
-                                <h4>Kazanılan Rozet</h4>
-                                <p id="parent-stat-badges">0 / 8 Rozet</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">🏃</span>
-                            <div class="stat-info">
-                                <h4>Ekran Dışı Görev</h4>
-                                <p id="parent-stat-missions">0 Görev</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Grafikler & İlerlemeler -->
-                    <div class="dashboard-details">
-                        <!-- Kategori İlerlemeleri -->
-                        <div class="panel-box flex-2">
-                            <h3>📚 Kategori Bazlı İlerleme Durumu</h3>
-                            <p class="subtitle">Çocuğunuzun tamamladığı quizlerin kategorilere göre dağılımı.</p>
-                            <div class="progress-list" id="parent-progress-list">
-                                <!-- Dinamik kategori ilerleme çubukları -->
-                            </div>
-                        </div>
-
-                        <!-- Gelişim Grafiği (Simüle Edilmiş SVG Grafik) -->
-                        <div class="panel-box flex-1">
-                            <h3>📊 Günlük Aktivite Dağılımı</h3>
-                            <p class="subtitle">Bu hafta kullanılan ortalama süre (dakika).</p>
-                            <div class="chart-container">
-                                <svg class="bar-chart" viewBox="0 0 100 80">
-                                    <rect x="5" y="50" width="8" height="30" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="18" y="40" width="8" height="40" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="31" y="60" width="8" height="20" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="44" y="30" width="8" height="50" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="57" y="20" width="8" height="60" fill="var(--color-primary)" rx="2"/>
-                                    <rect x="70" y="45" width="8" height="35" fill="var(--color-primary)" rx="2"/>
-                                    <rect x="83" y="10" width="8" height="70" fill="var(--color-secondary)" rx="2"/>
-                                    
-                                    <text x="9" y="78" font-size="4" text-anchor="middle" fill="#888">Pzt</text>
-                                    <text x="22" y="78" font-size="4" text-anchor="middle" fill="#888">Sal</text>
-                                    <text x="35" y="78" font-size="4" text-anchor="middle" fill="#888">Çar</text>
-                                    <text x="48" y="78" font-size="4" text-anchor="middle" fill="#888">Per</text>
-                                    <text x="61" y="78" font-size="4" text-anchor="middle" fill="#888">Cum</text>
-                                    <text x="74" y="78" font-size="4" text-anchor="middle" fill="#888">Cmt</text>
-                                    <text x="87" y="78" font-size="4" text-anchor="middle" fill="#888">Paz</text>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pedagojik Özet & Detaylar (Yeni Bölüm) -->
-                    <div class="dashboard-details" style="margin-top: 30px;">
-                        <!-- Bugünkü Aktivite Detayları -->
-                        <div class="panel-box flex-1">
-                            <h3>🔍 Bugünkü Aktivite Detayları</h3>
-                            <p class="subtitle">Bugün gerçekleştirilen etkinliklerin detaylı dökümü.</p>
-                            <ul class="demo-activity-details-list" style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">⏱️ Bugünkü Kullanım Süresi:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">12 dakika</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🎬 Tamamlanan İçerik:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">Mavi Rengi Keşfedelim</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🏆 Kazanılan Rozet:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">Mavi Kâşifi</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🎮 Quiz Sonucu:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">3 sorudan 2 doğru</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🏃 Ekran Dışı Görev:</span>
-                                    <strong style="color: #22c55e; font-weight: 600;">Tamamlandı ✅</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">💡 Öne Çıkan Beceri:</span>
-                                    <strong style="color: var(--color-secondary); font-weight: 600;">Renk tanıma ve dikkat</strong>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Pedagojik Haftalık Gelişim Özeti -->
-                        <div class="panel-box flex-1" style="background: linear-gradient(135deg, #fefefe 0%, #f0f7ff 100%); border: 1px solid var(--color-primary-light);">
-                            <h3 style="color: var(--color-primary);">🌱 Pedagojik Haftalık Gelişim Özeti</h3>
-                            <p class="subtitle">Uzman pedagoglarımızın çocuğunuzun bu haftaki gelişim analizi.</p>
-                            <div style="background-color: white; padding: 20px; border-radius: var(--radius-sm); border-left: 4px solid var(--color-primary); box-shadow: var(--shadow-sm); line-height: 1.6; color: var(--color-text);">
-                                “Bu hafta çocuğunuz renkler kategorisinde ilerleme gösterdi. Özellikle mavi ve kırmızı renkleri ayırt etme, dikkatini kısa süreli etkinliklerde toplama ve ekran dışı görevleri tamamlama alanlarında gelişim gözlemlendi.”
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- B. EKRAN SÜRESİ KONTROLÜ SEKMESİ -->
-                <div id="parent-tab-limit" class="parent-tab-content">
-                    <div class="panel-box limit-box">
-                        <h2>⏱️ Akıllı Süre Sınırlayıcı</h2>
-                        <p class="subtitle">Çocuğunuzun göz sağlığı ve ekran dengesini korumak için günlük kullanım limiti belirleyebilirsiniz. Belirlediğiniz süre dolduğunda uygulama otomatik olarak kilitlenecektir.</p>
-                        
-                        <div class="limit-status">
-                            <span class="status-indicator-badge" id="limit-status-badge">Aktif</span>
-                            <p>Kalan Süre: <strong id="limit-remaining-display">15:00</strong></p>
-                        </div>
-
-                        <div class="limit-selector-group">
-                            <span class="limit-select-label">Günlük Ekran Limiti Seçin:</span>
-                            <div class="limit-buttons">
-                                <button class="limit-preset-btn active" data-minutes="15">15 Dakika</button>
-                                <button class="limit-preset-btn" data-minutes="30">30 Dakika</button>
-                                <button class="limit-preset-btn" data-minutes="45">45 Dakika</button>
-                                <button class="limit-preset-btn" data-minutes="0">Sınırsız (Kapat)</button>
-                            </div>
-                        </div>
-
-                        <div class="alert alert-warning">
-                            💡 <strong>Öneri:</strong> 3-6 yaş arası çocuklar için uzmanlar günlük ekran süresinin maksimum 45 dakika olmasını ve bunun 15'er dakikalık seanslara bölünmesini tavsiye eder.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- C. ABONELİK & ÖDEME SEKMESİ -->
-                <div id="parent-tab-billing" class="parent-tab-content">
-                    <div class="panel-box billing-box">
-                        <h2>💳 Üyelik ve Paket Yönetimi</h2>
-                        
-                        <div class="current-subscription-status" id="billing-status-box">
-                            <div class="billing-status-info">
-                                <h3>Üyelik Tipi: <span id="current-membership-label" class="badge-free">Ücretsiz Paket</span></h3>
-                                <p id="membership-details-text">Tüm özelliklere erişmek için Premium pakete geçin.</p>
-                            </div>
-                        </div>
-
-                        <!-- Yeni Ebeveyn Paneli Üyelik İlgi Alanları -->
-                        <div id="premium-checkout-container" class="checkout-form-wrapper">
-                            <h3>Mini Kâşif Premium Deneyimi</h3>
-                            <p class="subtitle">Mini Kâşif şu an lansman öncesi aşamadadır. Ürünün gelişimine katkıda bulunmak ve lansman fırsatlarından yararlanmak için ilgi durumunuzu belirtebilirsiniz:</p>
-                            
-                            <div class="demo-interest-actions">
-                                <button class="btn btn-primary btn-block" id="btn-demo-interest-premium">
-                                    ⭐ Premium ile İlgileniyorum (Demo Aktifleştir)
-                                </button>
-                                <button class="btn btn-secondary btn-block" id="btn-demo-go-early">
-                                    🚀 Erken Erişime Katıl
-                                </button>
-                                <button class="btn btn-text btn-block" id="btn-demo-notify-launch">
-                                    📧 Lansmanda Haber Ver
-                                </button>
-                            </div>
-                        </div>
-
-                        <div id="premium-active-actions" class="premium-active-box" style="display:none;">
-                            <div class="alert alert-success">
-                                🎉 <strong>Harika!</strong> Mini Kâşif Premium aboneliğiniz aktiftir. Tüm kategorilere ve raporlara tam erişim hakkınız bulunmaktadır.
-                            </div>
-                            <button class="btn btn-danger btn-sm" id="btn-cancel-premium">Simüle Edilen Aboneliği İptal Et (Ücretsiz Pakete Dön)</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- D. ERKEN ERİŞİM BAŞVURUSU SEKMESİ -->
-                <div id="parent-tab-early-access" class="parent-tab-content">
-                    <div class="panel-box early-access-summary-box">
-                        <h2>📋 Erken Erişim Başvuru Bilgileriniz</h2>
-                        <p class="subtitle">Mini Kâşif lansmanı öncesinde doldurduğunuz başvuru formu detayları ve özel durumunuz.</p>
-                        
-                        <div id="early-access-portal-view">
-                            <!-- Javascript ile dinamik olarak doldurulacak -->
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </section>
-
-    <!-- UYKU EKRANI (SLEEP / TIME LIMIT EXPIRED SCREEN) -->
-    <section id="sleep-screen" class="screen">
-        <!-- Demo Uyarı Bannerı -->
-        <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
-        </div>
-        <div class="sleep-content">
-            <div class="sleeping-mascot-animation">
-                <!-- Uykulu CSS Maskot -->
-                <div class="sleep-eyes">😴</div>
-                <div class="z-letters">
-                    <span class="z1">Z</span>
-                    <span class="z2">z</span>
-                    <span class="z3">z</span>
-                </div>
-            </div>
-            <h2>Mini Kâşif Dinleniyor... 💤</h2>
-            <p>Bugünlük bu kadar öğrenme macerası yeterli! Gözlerimizi dinlendirelim ve yarın yepyeni maceralara yelken açalım.</p>
-            
-            <div class="sleep-actions">
-                <button class="btn btn-secondary" id="btn-bypass-sleep">Ebeveyn Kilidini Aç (Süreyi Uzat)</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- DEMO BAŞLANGIÇ SEÇİMİ MODALI (DEMO WELCOME MODAL) -->
-    <div id="demo-welcome-modal" class="modal-overlay">
-        <div class="modal-card demo-welcome-card">
-            <button class="modal-close" id="btn-close-demo-welcome">×</button>
-            <div class="demo-welcome-header">
-                <span class="welcome-emoji">🎮</span>
-                <h2>Mini Kâşif Demo Dünyası</h2>
-                <p>Uygulamayı hemen keşfetmek için bir deneyim modu seçin:</p>
-            </div>
-            <div class="demo-options-grid">
-                <button class="demo-option-btn" id="btn-demo-start-kids">
-                    <span class="option-icon">🧒</span>
-                    <h3>Çocuk Deneyimini Başlat</h3>
-                    <p>Sesli anlatımlı mini oyunlar, rozetler ve eğlenceli çocuk arayüzü.</p>
-                </button>
-                <button class="demo-option-btn" id="btn-demo-start-parent">
-                    <span class="option-icon">🔒</span>
-                    <h3>Ebeveyn Panelini İncele</h3>
-                    <p>Gelişim raporları, süre sınırları ve örnek ebeveyn kontrolleri.</p>
-                </button>
-            </div>
-    <!-- Demo Hızlı İlerleme Menüsü (Floating Guide) -->
-    <div id="demo-guide-panel" class="demo-guide-panel" style="display: none;">
-        <div class="demo-guide-header">
-            <span class="guide-sparkle">✨</span>
-            <h4>Demo Adımları</h4>
-        </div>
-        <div class="demo-guide-buttons">
-            <button class="demo-guide-btn" id="btn-guide-video">🎬 Videoyu İzle</button>
-            <button class="demo-guide-btn" id="btn-guide-quiz">🎮 Soruları Çöz</button>
-            <button class="demo-guide-btn" id="btn-guide-mission">🏃 Görevi Gör</button>
-            <button class="demo-guide-btn" id="btn-guide-badge">🏆 Rozetimi Gör</button>
-            <button class="demo-guide-btn" id="btn-guide-parent">🔒 Ebeveyn Panelini Gör</button>
-        </div>
-        <button class="demo-guide-exit" id="btn-guide-exit-early">Erken Erişime Katıl 🚀</button>
-    </div>
-
-    <!-- Bildirim Balonu (Toast) -->
-    <div id="toast-notification" class="toast">
-        Harika! Bir yıldız kazandın. ⭐
-    </div>
-
-    <!-- Confetti Canvas (Oyun Başarılarında Patlayacak) -->
-    <canvas id="confetti-canvas"></canvas>
+        <div id="demo-container"></div>
 
     <script src="app.js"></script>
 </body>

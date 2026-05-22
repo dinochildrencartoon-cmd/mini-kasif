@@ -3388,35 +3388,45 @@ class MiniKasifApp {
             audioIndicator.addEventListener('click', () => this.toggleMute());
         }
 
-        // Landing Sayfası Ebeveyn Paneli Butonu
-        const btnParentGateLanding = document.getElementById('btn-parent-gate-landing');
-        if (btnParentGateLanding) {
-            btnParentGateLanding.addEventListener('click', () => this.openParentGate());
+        // Demo Modalı Tetikleyicileri
+        document.querySelectorAll('.btn-demo-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openModal('demo-welcome-modal');
+            });
+        });
+
+        // Demo Hoş Geldiniz Modalı Kapatma
+        const btnCloseDemoWelcome = document.getElementById('btn-close-demo-welcome');
+        if (btnCloseDemoWelcome) {
+            btnCloseDemoWelcome.addEventListener('click', () => this.closeModal('demo-welcome-modal'));
         }
 
-        // Landing Sayfası Hero Ebeveyn Girişi Butonu
-        const btnParentGateHero = document.getElementById('btn-parent-gate-hero');
-        if (btnParentGateHero) {
-            btnParentGateHero.addEventListener('click', () => this.openParentGate('dashboard'));
+        // Demo Çocuk Deneyimini Başlat
+        const btnDemoStartKids = document.getElementById('btn-demo-start-kids');
+        if (btnDemoStartKids) {
+            btnDemoStartKids.addEventListener('click', () => {
+                this.closeModal('demo-welcome-modal');
+                this.navigateTo('kids-dashboard');
+            });
         }
 
-        // Maceraları Başlat Butonu
-        const btnStartAdventure = document.getElementById('btn-start-adventure');
-        if (btnStartAdventure) {
-            btnStartAdventure.addEventListener('click', () => this.navigateTo('kids-dashboard'));
+        // Demo Ebeveyn Panelini İncele
+        const btnDemoStartParent = document.getElementById('btn-demo-start-parent');
+        if (btnDemoStartParent) {
+            btnDemoStartParent.addEventListener('click', () => {
+                this.closeModal('demo-welcome-modal');
+                this.openParentGate('dashboard');
+            });
         }
 
-        // Son Çağrı (Final CTA) Butonu
-        const btnFinalCta = document.getElementById('btn-final-cta');
-        if (btnFinalCta) {
-            btnFinalCta.addEventListener('click', () => this.navigateTo('kids-dashboard'));
-        }
-
-        // Aboneliği Simüle Et (Landing)
-        const btnSimulatePremium = document.getElementById('btn-simulate-premium');
-        if (btnSimulatePremium) {
-            btnSimulatePremium.addEventListener('click', () => this.openParentGate('premium'));
-        }
+        // Demo'dan Çıkış (Warning Banner Butonları)
+        document.querySelectorAll('.btn-exit-demo').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.navigateTo('landing-screen');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
 
         // Çocuk Dashboard Geri Dön Butonu
         const btnBackToLanding = document.getElementById('btn-back-to-landing');
@@ -3539,32 +3549,30 @@ class MiniKasifApp {
             });
         });
 
-        // Kredi Kartı Girdileri ve Maskeleme
-        const payName = document.getElementById('pay-name');
-        if (payName) {
-            payName.addEventListener('input', (e) => {
-                this.updateCardPreview('holder', e.target.value);
-            });
+        // Demo Üyelik Sekmesi Butonları
+        const btnDemoInterestPremium = document.getElementById('btn-demo-interest-premium');
+        if (btnDemoInterestPremium) {
+            btnDemoInterestPremium.addEventListener('click', () => this.activatePremiumDemo());
         }
-        const payNumber = document.getElementById('pay-number');
-        if (payNumber) {
-            payNumber.addEventListener('input', (e) => {
-                this.formatCardNumber(e.target);
-                this.updateCardPreview('number', e.target.value);
-            });
-        }
-        const payExpiry = document.getElementById('pay-expiry');
-        if (payExpiry) {
-            payExpiry.addEventListener('input', (e) => {
-                this.formatExpiry(e.target);
-                this.updateCardPreview('expiry', e.target.value);
+
+        const btnDemoGoEarly = document.getElementById('btn-demo-go-early');
+        if (btnDemoGoEarly) {
+            btnDemoGoEarly.addEventListener('click', () => {
+                this.navigateTo('landing-screen');
+                setTimeout(() => {
+                    const section = document.getElementById('early-access-section');
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
             });
         }
 
-        // Aboneliği Başlat ve İptal Et
-        const btnSubmitPayment = document.getElementById('btn-submit-payment');
-        if (btnSubmitPayment) {
-            btnSubmitPayment.addEventListener('click', () => this.simulateSubscriptionPurchase());
+        const btnDemoNotifyLaunch = document.getElementById('btn-demo-notify-launch');
+        if (btnDemoNotifyLaunch) {
+            btnDemoNotifyLaunch.addEventListener('click', () => {
+                this.showToast("İlginiz için teşekkürler! Lansman listesine eklendiniz. 🚀");
+            });
         }
         const btnCancelPremium = document.getElementById('btn-cancel-premium');
         if (btnCancelPremium) {
@@ -4292,23 +4300,14 @@ class MiniKasifApp {
         }
     }
 
-    simulateSubscriptionPurchase() {
-        const name = document.getElementById('pay-name').value;
-        const number = document.getElementById('pay-number').value;
-
-        if (!name || number.length < 15) {
-            alert("Lütfen geçerli kart sahibi ve kart numarası girin!");
-            return;
-        }
-
-        // Aboneliği başlat
+    activatePremiumDemo() {
         this.state.isPremium = true;
         this.saveState();
         this.updateSubscriptionBillingUI();
         this.renderCategories(); // Çocuk ekranındaki kilitleri kaldır
         this.playEffect('victory');
         this.triggerConfetti();
-        this.showToast("Mini Kâşif Premium başarıyla aktif edildi! Keyifli maceralar.");
+        this.showToast("Mini Kâşif Premium demo modu başarıyla aktif edildi! Tüm kilitler açıldı. 🚀");
     }
 
     cancelPremiumSim() {
@@ -4317,36 +4316,6 @@ class MiniKasifApp {
         this.updateSubscriptionBillingUI();
         this.renderCategories();
         this.showToast("Abonelik iptal edildi (Ücretsiz pakete dönüldü).");
-    }
-
-    // Kredi kartı görsel simülasyon güncellemeleri
-    updateCardPreview(field, val) {
-        if (field === 'holder') {
-            document.getElementById('card-holder-preview').innerText = val.toUpperCase() || 'KART SAHİBİ';
-        } else if (field === 'number') {
-            document.getElementById('card-number-preview').innerText = val || '•••• •••• •••• ••••';
-        } else if (field === 'expiry') {
-            document.getElementById('card-expiry-preview').innerText = val || 'AA/YY';
-        }
-    }
-
-    formatCardNumber(input) {
-        let value = input.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-        let formatted = '';
-        for (let i = 0; i < value.length; i++) {
-            if (i > 0 && i % 4 === 0) formatted += ' ';
-            formatted += value[i];
-        }
-        input.value = formatted;
-    }
-
-    formatExpiry(input) {
-        let value = input.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-        if (value.length > 2) {
-            input.value = value.slice(0,2) + '/' + value.slice(2,4);
-        } else {
-            input.value = value;
-        }
     }
 
     // 9. SÜRE SAYAÇ MOTORU (GÜNLÜK LİMİT KONTROLÜ)
@@ -4688,7 +4657,7 @@ class MiniKasifApp {
                 type: 'checkbox',
                 options: [
                     'Kontrolsüz reklamlar ve uygunsuz sponsorlu içerikler',
-                    'Bağımlılık yapıcı algoritmalar yüzünden ekrandan ayrılamaması',
+                    'Otomatik akış ve yönlendirmeler nedeniyle ekran başından ayrılmakta zorlanması',
                     'İçeriklerin pedagojik açıdan yaşına uygun olmaması (şiddet, argolu dil vb.)',
                     'Ekran başında tamamen pasif kalması ve fiziksel hareketten uzaklaşması',
                     'Herhangi bir endişem bulunmuyor.'

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; script-src 'self'; img-src 'self' data:;">
+    <title>Mini Kâşif - Eğlenceli ve Güvenli Öğrenme Dünyası</title>
+    <!-- Google Fonts: Çocuklar için Quicksand, Ebeveynler için Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Ses Sentezleyici Durum Göstergesi (Küçük ve Şirin) -->
+    <div id="audio-indicator" class="audio-pulse">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.07,19.86 21,16.28 21,12C21,7.72 18.07,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.77 16.5,12M11,21L6,16H2V8H6L11,3V21Z"/>
+        </svg>
+        <span>Ses Açık</span>
+    </div>
+
+    <!-- 1. TANITIM & AÇILIŞ EKRANI (LANDING SCREEN) -->
+    <section id="landing-screen" class="screen active">
+        <header class="landing-header">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Mini Kâşif</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-parent-gate-landing">Ebeveyn Paneli</button>
+        </header>
+
+        <main class="landing-hero">
+            <div class="hero-content">
+                <div class="badge-pill">👶 3-6 Yaş Grubu Çocuklar İçin Güvenli & Pedagojik Alan</div>
+                <h1>Ekran süresini öğrenme süresine dönüştürün.</h1>
+                <p>Mini Kâşif; reklamsız, yaşa özel hazırlanan mini oyunlar ve ekrandan uzaklaştıran fiziksel görevlerle çocuklarınızın dijital süresini aktif ve güvenli bir gelişim macerasına dönüştürür.</p>
+                
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg pulse" id="btn-start-adventure">
+                        🚀 Ücretsiz Keşfetmeye Başla
+                    </button>
+                    <button class="btn btn-secondary btn-lg" id="btn-parent-gate-hero">
+                        🔒 Ebeveyn Girişi
+                    </button>
+                </div>
+                <p class="hero-subtext">Kredi kartı gerekmez. Saniyeler içinde başlayın.</p>
+            </div>
+            <div class="hero-graphic">
+                <!-- Sevimli CSS/SVG Maskot Grafiği -->
+                <div class="mascot-wrapper">
+                    <div class="floating-mascot">
+                        <div class="mascot-face">
+                            <div class="mascot-eyes">
+                                <div class="eye left"><div class="pupil"></div></div>
+                                <div class="eye right"><div class="pupil"></div></div>
+                            </div>
+                            <div class="mascot-smile"></div>
+                            <div class="mascot-cheeks"></div>
+                        </div>
+                        <div class="mascot-body">
+                            <div class="mascot-hand left">👋</div>
+                            <div class="mascot-hand right">✨</div>
+                        </div>
+                    </div>
+                    <div class="mascot-shadow"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Section 2: Sorun Bölümü -->
+        <section id="problem" class="problem-section bg-gray-50">
+            <div class="section-header">
+                <span class="section-tag">NEYİN FARKINDAYIZ?</span>
+                <h2>Ebeveynlerin En Büyük İkilemi: Ekran Bağımlılığı</h2>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-emoji">📱</span>
+                    <h3>Manipülatif Tasarımlar</h3>
+                    <p>Popüler video platformlarındaki kontrolsüz reklamlar ve otomatik oynatma özellikleri, çocukları ekrana hipnotize olmuş gibi bağlar.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-emoji">🛋️</span>
+                    <h3>Sadece İzleyen Çocuklar</h3>
+                    <p>Çocuklar sadece ekrana bakıp yönlendirildiklerinde zihinsel gelişimleri duraklar. Onların izlemeye değil, dokunmaya ve düşünmeye ihtiyacı var.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-emoji">😭</span>
+                    <h3>Kapanış Tartışmaları</h3>
+                    <p>Ekran süresi bittiğinde yaşanan öfke nöbetleri ve ağlama krizleri, ekran sınırlarının çocuk gözünde doğru yönetilmemesinden kaynaklanır.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Çözüm Bölümü -->
+        <section id="solution" class="solution-section">
+            <div class="solution-container">
+                <div class="solution-content">
+                    <span class="section-tag">NASIL ÇÖZÜYORUZ?</span>
+                    <h2>Amacımız Ekran Süresini Artırmak Değil, Kalitesini Yükseltmek</h2>
+                    
+                    <div class="ethics-highlight-box">
+                        <strong>Etik Yaklaşımımız:</strong> Mini Kâşif, çocuğunuzu ekranda daha uzun süre tutmak için tasarlanmış bağımlılık yapıcı algoritmalar içermez. Amacımız, çocuğunuzun halihazır de var olan ekran süresini en güvenli, kontrollü ve eğitici formata ulaştırmaktır.
+                    </div>
+                    
+                    <p class="solution-description">
+                        Mini Kâşif, çocuk gelişim uzmanları tarafından belirlenen süre limitlerine sadık kalır. Günlük limit dolduğunda sevimli maskotumuz uyku moduna geçer ve çocuğunuzu ekranı kapatıp dinlenmeye teşvik eder.
+                    </p>
+                </div>
+                <div class="solution-visual">
+                    <div class="mascot-badge-box">
+                        <div class="mascot-wrapper">
+                            <div class="floating-mascot sleeping">
+                                <div class="mascot-face">
+                                    <div class="mascot-eyes closed">😴</div>
+                                </div>
+                                <div class="z-letters">
+                                    <span class="z1">Z</span>
+                                    <span class="z2">z</span>
+                                    <span class="z3">z</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="sleep-note">Süre dolduğunda maskotumuz uyku moduna geçer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Nasıl Çalışır? -->
+        <section id="how-it-works" class="how-it-works-section bg-gradient">
+            <div class="section-header">
+                <span class="section-tag text-accent">3 ADIMDA ETKİN ÖĞRENME</span>
+                <h2>Mini Kâşif Döngüsü Nasıl Çalışır?</h2>
+            </div>
+            <div class="steps-flow">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h3>İzle ve Keşfet</h3>
+                    <p>Çocuk, seçeceği öğrenme kategorisindeki 3 dakikayı aşmayan, çocuk gelişimi standartlarına uygun kısa animasyonu izler ve dinler.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h3>Oyna ve Pekiştir</h3>
+                    <p>İzlediği kavramlarla ilgili sesli yönlendirmelere sahip mini quizleri çözerek yıldızlar kazanır. Aktif olarak kararlar verir.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h3>Ekrandan Uzaklaş</h3>
+                    <p>Sistem çocuğa fiziksel bir ev görevi verir (Örn: "Şimdi odandaki sarı renkli 3 oyuncağı bul ve anne-babana göster!"). Ekran bağlantısı kesilir.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Özellikler -->
+        <section id="features" class="features-grid-section">
+            <div class="section-header">
+                <span class="section-tag">ÖNE ÇIKAN ÖZELLİKLERİMİZ</span>
+                <h2>Ebeveynlerin İçini Rahatlatan Detaylar</h2>
+            </div>
+            <div class="features-grid-landing">
+                <div class="feature-box">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>%100 Reklamsız Ortam</h3>
+                    <p>Hiçbir aşamada reklam veya sponsorlu içerik gösterilmez. Çocuğunuz yanlışlıkla harici bir linke tıklayamaz.</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🧸</span>
+                    <h3>Yaşa Özel Yapılandırılmış İçerik</h3>
+                    <p>3-6 yaş pedagojisine uygun, dikkat sürelerini aşmayan özel hikayeler ve anlatımlar içerir.</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">⏱️</span>
+                    <h3>Ekran Süresi Sınırlayıcı</h3>
+                    <p>Günlük 15, 30 veya 45 dakika sınırları belirleyin. Süre dolduğunda sistem otomatik olarak durur.</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">⭐</span>
+                    <h3>Rozet ve Yıldız Sistemi</h3>
+                    <p>Çocukları öğrenmeye motive eden ödüllendirmeler. Hiçbir rekabet veya kaybetme hissi barındırmayan pozitif pekiştireçler.</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📊</span>
+                    <h3>Detaylı Gelişim Raporları</h3>
+                    <p>Çocuğunuzun en çok hangi kategoriyle ilgilendiğini, neleri başardığını haftalık grafiklerle izleyin.</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🏃</span>
+                    <h3>Çevrimdışı Görevler</h3>
+                    <p>Çocukları fiziksel aktiviteye, çizim yapmaya veya doğa araştırmalarına yönlendiren görev kartları.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: İçerik Kategorileri -->
+        <section id="categories-promo" class="categories-promo-section bg-gray-50">
+            <div class="section-header">
+                <span class="section-tag">NELER ÖĞRENİYORLAR?</span>
+                <h2>İlk Adımda Açılan 8 Temel Kategori</h2>
+            </div>
+            <div id="landing-categories-grid" class="landing-categories-grid">
+                <!-- Javascript tarafından dinamik doldurulacak -->
+            </div>
+        </section>
+
+        <!-- Section 7: Ebeveyn Paneli Tanıtımı -->
+        <section id="parent-dashboard-promo" class="parent-dashboard-promo">
+            <div class="parent-promo-container">
+                <div class="parent-promo-graphic">
+                    <div class="mockup-dashboard">
+                        <div class="mockup-header">
+                            <span class="mockup-dot"></span>
+                            <span class="mockup-dot"></span>
+                            <span class="mockup-dot"></span>
+                        </div>
+                        <div class="mockup-body">
+                            <div class="mockup-stat">
+                                <span class="mockup-stat-icon">⏱️</span>
+                                <div><strong>30 Dakika</strong><br><span style="font-size: 0.75rem; color:#888;">Günlük Kullanım</span></div>
+                            </div>
+                            <div class="mockup-stat">
+                                <span class="mockup-stat-icon">⭐</span>
+                                <div><strong>120 Yıldız</strong><br><span style="font-size: 0.75rem; color:#888;">Toplam Skor</span></div>
+                            </div>
+                            <div class="mockup-chart">
+                                <div class="mockup-bar" style="height: 40%"></div>
+                                <div class="mockup-bar" style="height: 70%"></div>
+                                <div class="mockup-bar" style="height: 50%"></div>
+                                <div class="mockup-bar" style="height: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="parent-promo-content">
+                    <span class="section-tag">YÖNETİM SİZDE</span>
+                    <h2>Kontrolü Tamamen Size Bırakan Panel</h2>
+                    <p>Çocuğunuz güvenle öğrenirken siz arka planda her şeyi yönetin. Ebeveyn paneline geçişler, çocukların rastgele tuşlamalarla aşamayacağı <strong>"Matematiksel Ebeveyn Kilidi"</strong> ile korunur.</p>
+                    <ul class="promo-benefits">
+                        <li>📈 <strong>İlgi Alanlarını Keşfedin:</strong> Çocuğunuzun en çok hangi alanlara yatkın olduğunu grafiklerle görün.</li>
+                        <li>⏰ <strong>Süre Sınırı Koyun:</strong> Çocuğunuza hissettirmeden ekran süresini önceden belirleyin.</li>
+                        <li>📋 <strong>Ekran Dışı Görevleri Onaylayın:</strong> Çocuğunuzun fiziksel olarak tamamlayıp size getirdiği görevleri onaylayarak yeni yıldızları birlikte kazanın.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Güven ve Etik Yaklaşım -->
+        <section id="ethics" class="ethics-section text-white">
+            <div class="section-header">
+                <span class="section-tag text-accent">ETİK VE SORUMLU DİJİTAL DÜNYA</span>
+                <h2 class="text-white">Biz Neden Farklıyız? Sorumluluk Sözümüz</h2>
+            </div>
+            <div class="ethics-grid">
+                <div class="ethics-card">
+                    <span class="ethics-card-icon">❌</span>
+                    <h3>Dopamin Tuzakları Yok</h3>
+                    <p>Çocukları ekranda tutmak için tasarlanmış ani yanıp sönen ışıklar, stres verici hızlı müzikler veya bitmeyen akışlar bulunmaz.</p>
+                </div>
+                <div class="ethics-card">
+                    <span class="ethics-card-icon">❌</span>
+                    <h3>Veri Takibi Yok</h3>
+                    <p>Çocuğunuzun kişisel verileri asla toplanmaz, üçüncü şahıslara veya reklam ağlarına satılmaz.</p>
+                </div>
+                <div class="ethics-card">
+                    <span class="ethics-card-icon">❌</span>
+                    <h3>Gizli Satışlar Yok</h3>
+                    <p>Uygulama içinde çocukların karşısına yanlışlıkla satın alabilecekleri hiçbir ödeme butonu çıkarılmaz. Ödeme alanı sadece ebeveyn panelindedir.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Fiyatlandırma / Erken Erişim -->
+        <section id="pricing" class="pricing-section">
+            <div class="section-header">
+                <span class="section-tag">BÜTÇE DOSTU VE ŞEFFAF</span>
+                <h2>Tüm Kategorilerde Sınırsız Macera</h2>
+            </div>
+            <div class="pricing-wizard-container">
+                <div class="pricing-card-expanded">
+                    <span class="pricing-badge">EN POPÜLER</span>
+                    <h3>Mini Kâşif Premium</h3>
+                    <div class="price">99 ₺<span> / aylık</span></div>
+                    <p>Tüm 8 kategoride sınırsız oyun, sesli hikayeler, ekran dışı görevler ve detaylı ebeveyn raporları.</p>
+                    <ul class="pricing-features-list">
+                        <li>✔️ 8 Eğitici Kategorinin Tamamı (Renkler, Sayılar, Hayvanlar...)</li>
+                        <li>✔️ Günlük Akıllı Süre Sınırlayıcı Kilidi</li>
+                        <li>✔️ Sınırsız Ekran Dışı Görev Önerisi</li>
+                        <li>✔️ Detaylı Haftalık Gelişim Grafik Raporları</li>
+                        <li>✔️ Reklamsız, Güvenli ve Pedagojik Yapı</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" id="btn-simulate-premium">💎 Premium'u Şimdi Deneyin</button>
+                    <p class="pricing-free-tier">Dilerseniz "Renkler" ve "Sayılar" kategorilerini sonsuza dek ücretsiz sürümle deneyebilirsiniz.</p>
+                </div>
+                
+                <!-- Erken Erişim Formu Sihirbazı Kartı -->
+                <div class="early-access-wizard-card" id="early-access-wizard-container">
+                    <!-- Dinamik Erken Erişim Formu Javascript Tarafından Doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Sık Sorulan Sorular -->
+        <section id="faq" class="faq-section bg-gray-50">
+            <div class="section-header">
+                <h2>Ebeveynlerin Kafasındaki Sorular</h2>
+            </div>
+            <div class="faq-accordion-container">
+                <div class="faq-item">
+                    <button class="faq-trigger" id="faq-trigger-1" aria-expanded="false" aria-controls="faq-content-1">
+                        <span>Mini Kâşif çocuğumu ekrana daha fazla bağlar mı?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content" id="faq-content-1" role="region" aria-labelledby="faq-trigger-1">
+                        <p>Hayır. Mini Kâşif'in temel amacı pasif ekran süresini aktif ve sınırlı bir süreye dönüştürmektir. Ekran dışı fiziksel görev önerilerimiz ve akıllı süre sınırlayıcımız sayesinde çocuğunuzun dijital süresi bittiğinde ekrandan kopması çok daha kolaylaşır.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger" id="faq-trigger-2" aria-expanded="false" aria-controls="faq-content-2">
+                        <span>Çevrimdışı görevler tam olarak nedir?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content" id="faq-content-2" role="region" aria-labelledby="faq-trigger-2">
+                        <p>Öğrenilen kategorilerle ilgili çocuğun evde yapabileceği fiziksel etkinliklerdir. Örneğin şekiller kategorisinde çocuktan evdeki yuvarlak eşyaları bulup ebeveynine göstermesi istenir. Bu durum zihinsel öğrenmeyi fiziksel dünya ile birleştirir.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger" id="faq-trigger-3" aria-expanded="false" aria-controls="faq-content-3">
+                        <span>Herhangi bir taahhüt var mı? İstediğim zaman iptal edebilir miyim?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content" id="faq-content-3" role="region" aria-labelledby="faq-trigger-3">
+                        <p>Kesinlikle taahhüt yoktur. Aboneliğinizi ebeveyn paneli üzerinden saniyeler içinde tek tıkla iptal edebilirsiniz. İptal sonrasında abonelik döneminizin sonuna kadar Premium haklarınızı kullanmaya devam edersiniz.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger" id="faq-trigger-4" aria-expanded="false" aria-controls="faq-content-4">
+                        <span>3 yaşındaki bir çocuk uygulamayı tek başına kullanabilir mi?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-content" id="faq-content-4" role="region" aria-labelledby="faq-trigger-4">
+                        <p>Evet. Uygulama içerisindeki tüm adımlar sesli yönergelerle desteklenmiştir. Okuma bilmeyen çocukların bile sadece sesleri ve simgeleri takip ederek bağımsızca öğrenebilmesi amaçlanmıştır.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Son Çağrı -->
+        <section id="final-cta" class="final-cta-section text-center text-white">
+            <div class="final-cta-content">
+                <h2>Ekran Süresini Birlikte Öğrenme Süresine Dönüştürelim!</h2>
+                <p>Çocuğunuzun ilk dijital deneyimi güvenli, öğretici ve dengeli olsun. Mini Kâşif dünyasına bugün katılın.</p>
+                <button class="btn btn-primary btn-lg pulse" id="btn-final-cta">🚀 Küçük Kâşifimin Macerasını Başlat</button>
+                <p class="final-cta-note">Kayıt olmak tamamen ücretsizdir.</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
+    <section id="kids-dashboard" class="screen">
+        <header class="kids-header">
+            <button class="btn-back-circle" id="btn-back-to-landing">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20,11H7.83L13.41,5.41L12,4L4,12L12,20L13.41,18.59L7.83,13H20V11Z"/></svg>
+            </button>
+            <div class="kids-header-title">
+                <h2>Merhaba Küçük Kâşif! 🌟</h2>
+                <p>Bugün hangi maceraya katılmak istersin?</p>
+            </div>
+            <button class="btn-parent-gate" id="btn-parent-gate-dashboard">
+                <span>Ebeveyn Alanı 🔒</span>
+            </button>
+        </header>
+
+        <main class="kids-categories">
+            <div class="categories-grid" id="categories-container">
+                <!-- Dinamik olarak app.js tarafından doldurulacak -->
+            </div>
+        </main>
+
+        <div class="kids-footer">
+            <div class="stars-counter">
+                <span class="star-icon">⭐</span>
+                <span id="total-stars-count">0</span> Yıldız Topladın!
+            </div>
+            <button class="btn-badges-view" id="btn-view-badges">
+                🏆 Rozetlerim
+            </button>
+        </div>
+    </section>
+
+    <!-- 3. ÇOCUK ETKİNLİK / OYUN EKRANI (KIDS ACTIVITY SCREEN) -->
+    <section id="kids-activity-screen" class="screen">
+        <header class="activity-header">
+            <button class="btn-back-circle" id="btn-exit-activity">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20,11H7.83L13.41,5.41L12,4L4,12L12,20L13.41,18.59L7.83,13H20V11Z"/></svg>
+            </button>
+            <div class="activity-category-title" id="activity-title">Kategori Adı</div>
+            <div class="activity-progress-bar">
+                <div class="progress-fill" id="activity-progress-fill" style="width: 0%"></div>
+            </div>
+        </header>
+
+        <main class="activity-content">
+            <!-- TAB SEÇİMİ (VİDEO / QUIZ) -->
+            <div class="activity-tabs">
+                <button class="tab-btn active" id="tab-video">📺 İzle & Keşfet</button>
+                <button class="tab-btn" id="tab-quiz">🎮 Oyna & Pekiştir</button>
+            </div>
+
+            <!-- VİDEO / KEŞİF MODU -->
+            <div id="mode-video" class="activity-tab-content active">
+                <div class="video-container">
+                    <div class="interactive-video-sim" id="video-sim-canvas">
+                        <!-- Buraya CSS animasyonlu görsel öğretim kartı gelecek -->
+                    </div>
+                    <button class="btn-play-voice" id="btn-play-voice">
+                        🔊 Sesli Anlatımı Dinle
+                    </button>
+                </div>
+                <div class="video-instruction">
+                    <h3>Yukarıdaki sevimli şekilleri izle ve dinle!</h3>
+                    <p>Hazır olduğunda yukarıdaki <strong>"Oyna & Pekiştir"</strong> sekmesine geçerek ödül yıldızını kazan!</p>
+                </div>
+            </div>
+
+            <!-- QUIZ MODU -->
+            <div id="mode-quiz" class="activity-tab-content">
+                <div class="quiz-question-box">
+                    <button class="btn-sound-replay" id="btn-replay-question" title="Soruyu Tekrar Dinle">🔊</button>
+                    <h2 id="quiz-question-text">Soruluyor...</h2>
+                </div>
+
+                <div class="quiz-options-grid" id="quiz-options-container">
+                    <!-- Dinamik şıklar -->
+                </div>
+
+                <div class="quiz-feedback-banner" id="quiz-feedback">
+                    Doğru/Yanlış Mesajı
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- ROZETLERİM MODALI (KIDS BADGES MODAL) -->
+    <div id="badges-modal" class="modal-overlay">
+        <div class="modal-card kids-modal">
+            <button class="modal-close" id="btn-close-badges">×</button>
+            <h2>Kâşif Rozetlerin 🏆</h2>
+            <p>Görevleri ve quizleri tamamlayarak kazandığın süper rozetler!</p>
+            <div class="badges-grid" id="badges-container">
+                <!-- Rozet kartları -->
+            </div>
+            <button class="btn btn-primary" id="btn-badges-confirm">Harika, Devam Et! 🚀</button>
+        </div>
+    </div>
+
+    <!-- EKRAN DIŞI GÖREV MODALI (OFFLINE MISSION MODAL) -->
+    <div id="mission-modal" class="modal-overlay">
+        <div class="modal-card kids-modal mission-card">
+            <div class="mission-icon">🏃✨</div>
+            <h2>Sıradaki Macera Ekran Dışında!</h2>
+            <div class="mission-text-container">
+                <p id="mission-description">Odandaki 3 tane mavi renkli nesneyi bulup anne veya babana göster!</p>
+            </div>
+            <div class="alert alert-info">
+                💡 <strong>Ebeveynlere Not:</strong> Ekran süresini dengelemek için bu görevi çocuğunuzla birlikte yapın.
+            </div>
+            <div class="mission-actions">
+                <button class="btn btn-primary btn-block" id="btn-claim-mission">
+                    Görevi Tamamladım! (Ebeveyn Onayı)
+                </button>
+                <button class="btn btn-text btn-block" id="btn-close-mission">
+                    Daha Sonra Yapacağım
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EBEVEYN KİLİDİ MODALI (PARENT GATE MODAL) -->
+    <div id="parent-gate-modal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" id="btn-close-parent-gate">×</button>
+            <div class="lock-header">
+                <span class="lock-icon">🔒</span>
+                <h2>Sadece Anne & Babalar İçin</h2>
+                <p>Ebeveyn alanına erişmek için lütfen aşağıdaki matematik sorusunu çözün:</p>
+            </div>
+            
+            <div class="gate-math-box">
+                <span id="gate-question">5 + 3 = ?</span>
+            </div>
+
+            <div class="gate-keypad">
+                <button class="key-btn" data-key="1">1</button>
+                <button class="key-btn" data-key="2">2</button>
+                <button class="key-btn" data-key="3">3</button>
+                <button class="key-btn" data-key="4">4</button>
+                <button class="key-btn" data-key="5">5</button>
+                <button class="key-btn" data-key="6">6</button>
+                <button class="key-btn" data-key="7">7</button>
+                <button class="key-btn" data-key="8">8</button>
+                <button class="key-btn" data-key="9">9</button>
+                <button class="key-btn" data-key="0">0</button>
+                <button class="key-btn btn-clear" id="btn-clear-gate">Temizle</button>
+            </div>
+
+            <div class="gate-input-display">
+                Cevabınız: <strong id="gate-input-val">-</strong>
+            </div>
+
+            <div id="gate-error" class="gate-error-msg">Yanlış cevap, lütfen tekrar deneyin.</div>
+
+            <div class="gate-actions">
+                <button class="btn btn-secondary btn-block" id="btn-submit-gate">Giriş Yap</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. EBEVEYN PANELİ (PARENT PORTAL) -->
+    <section id="parent-portal" class="screen">
+        <header class="parent-header">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Mini Kâşif Ebeveyn Paneli</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-exit-parent-portal">Çocuk Moduna Dön 🧒</button>
+        </header>
+
+        <div class="parent-layout">
+            <!-- Yan Menü -->
+            <aside class="parent-sidebar">
+                <button class="sidebar-btn active" id="side-dashboard">
+                    📊 Gelişim Raporu
+                </button>
+                <button class="sidebar-btn" id="side-limit">
+                    ⏱️ Ekran Süresi Kontrolü
+                </button>
+                <button class="sidebar-btn" id="side-billing">
+                    💳 Üyelik & Abonelik
+                </button>
+                <button class="sidebar-btn" id="side-early-access">
+                    📋 Erken Erişim Başvurusu
+                </button>
+            </aside>
+
+            <!-- İçerik Alanı -->
+            <main class="parent-main">
+                <!-- A. GELİŞİM RAPORU SEKMESİ -->
+                <div id="parent-tab-dashboard" class="parent-tab-content active">
+                    <div class="parent-welcome-banner">
+                        <h2>Hoş Geldiniz Sevgili Ebeveyn! 👋</h2>
+                        <p>Çocuğunuzun bu haftaki öğrenme performansı ve etkinlik analizleri aşağıdadır.</p>
+                    </div>
+
+                    <!-- Özet Kartları -->
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <span class="stat-icon">⏱️</span>
+                            <div class="stat-info">
+                                <h4>Toplam Süre</h4>
+                                <p id="parent-stat-time">0 Dakika</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⭐</span>
+                            <div class="stat-info">
+                                <h4>Kazanılan Yıldız</h4>
+                                <p id="parent-stat-stars">0 Yıldız</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🏆</span>
+                            <div class="stat-info">
+                                <h4>Kazanılan Rozet</h4>
+                                <p id="parent-stat-badges">0 / 8 Rozet</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">🏃</span>
+                            <div class="stat-info">
+                                <h4>Ekran Dışı Görev</h4>
+                                <p id="parent-stat-missions">0 Görev</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grafikler & İlerlemeler -->
+                    <div class="dashboard-details">
+                        <!-- Kategori İlerlemeleri -->
+                        <div class="panel-box flex-2">
+                            <h3>📚 Kategori Bazlı İlerleme Durumu</h3>
+                            <p class="subtitle">Çocuğunuzun tamamladığı quizlerin kategorilere göre dağılımı.</p>
+                            <div class="progress-list" id="parent-progress-list">
+                                <!-- Dinamik kategori ilerleme çubukları -->
+                            </div>
+                        </div>
+
+                        <!-- Gelişim Grafiği (Simüle Edilmiş SVG Grafik) -->
+                        <div class="panel-box flex-1">
+                            <h3>📊 Günlük Aktivite Dağılımı</h3>
+                            <p class="subtitle">Bu hafta kullanılan ortalama süre (dakika).</p>
+                            <div class="chart-container">
+                                <svg class="bar-chart" viewBox="0 0 100 80">
+                                    <rect x="5" y="50" width="8" height="30" fill="var(--color-primary-light)" rx="2"/>
+                                    <rect x="18" y="40" width="8" height="40" fill="var(--color-primary-light)" rx="2"/>
+                                    <rect x="31" y="60" width="8" height="20" fill="var(--color-primary-light)" rx="2"/>
+                                    <rect x="44" y="30" width="8" height="50" fill="var(--color-primary-light)" rx="2"/>
+                                    <rect x="57" y="20" width="8" height="60" fill="var(--color-primary)" rx="2"/>
+                                    <rect x="70" y="45" width="8" height="35" fill="var(--color-primary)" rx="2"/>
+                                    <rect x="83" y="10" width="8" height="70" fill="var(--color-secondary)" rx="2"/>
+                                    
+                                    <text x="9" y="78" font-size="4" text-anchor="middle" fill="#888">Pzt</text>
+                                    <text x="22" y="78" font-size="4" text-anchor="middle" fill="#888">Sal</text>
+                                    <text x="35" y="78" font-size="4" text-anchor="middle" fill="#888">Çar</text>
+                                    <text x="48" y="78" font-size="4" text-anchor="middle" fill="#888">Per</text>
+                                    <text x="61" y="78" font-size="4" text-anchor="middle" fill="#888">Cum</text>
+                                    <text x="74" y="78" font-size="4" text-anchor="middle" fill="#888">Cmt</text>
+                                    <text x="87" y="78" font-size="4" text-anchor="middle" fill="#888">Paz</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B. EKRAN SÜRESİ KONTROLÜ SEKMESİ -->
+                <div id="parent-tab-limit" class="parent-tab-content">
+                    <div class="panel-box limit-box">
+                        <h2>⏱️ Akıllı Süre Sınırlayıcı</h2>
+                        <p class="subtitle">Çocuğunuzun göz sağlığı ve ekran dengesini korumak için günlük kullanım limiti belirleyebilirsiniz. Belirlediğiniz süre dolduğunda uygulama otomatik olarak kilitlenecektir.</p>
+                        
+                        <div class="limit-status">
+                            <span class="status-indicator-badge" id="limit-status-badge">Aktif</span>
+                            <p>Kalan Süre: <strong id="limit-remaining-display">15:00</strong></p>
+                        </div>
+
+                        <div class="limit-selector-group">
+                            <span class="limit-select-label">Günlük Ekran Limiti Seçin:</span>
+                            <div class="limit-buttons">
+                                <button class="limit-preset-btn active" data-minutes="15">15 Dakika</button>
+                                <button class="limit-preset-btn" data-minutes="30">30 Dakika</button>
+                                <button class="limit-preset-btn" data-minutes="45">45 Dakika</button>
+                                <button class="limit-preset-btn" data-minutes="0">Sınırsız (Kapat)</button>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            💡 <strong>Öneri:</strong> 3-6 yaş arası çocuklar için uzmanlar günlük ekran süresinin maksimum 45 dakika olmasını ve bunun 15'er dakikalık seanslara bölünmesini tavsiye eder.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. ABONELİK & ÖDEME SEKMESİ -->
+                <div id="parent-tab-billing" class="parent-tab-content">
+                    <div class="panel-box billing-box">
+                        <h2>💳 Üyelik ve Paket Yönetimi</h2>
+                        
+                        <div class="current-subscription-status" id="billing-status-box">
+                            <div class="billing-status-info">
+                                <h3>Üyelik Tipi: <span id="current-membership-label" class="badge-free">Ücretsiz Paket</span></h3>
+                                <p id="membership-details-text">Tüm özelliklere erişmek için Premium pakete geçin.</p>
+                            </div>
+                        </div>
+
+                        <!-- Simüle Edilmiş Kredi Kartı Ödeme Arayüzü (Premium Aktifleştirici) -->
+                        <div id="premium-checkout-container" class="checkout-form-wrapper">
+                            <h3>Mini Kâşif Premium Üyeliğe Geç</h3>
+                            <p class="subtitle">Kredi kartı bilgilerinizi girerek aboneliği anında simüle edebilirsiniz (Gerçek para çekilmez!).</p>
+                            
+                            <div class="checkout-grid">
+                                <div class="payment-card-visual">
+                                    <div class="card-chip"></div>
+                                    <div class="card-number" id="card-number-preview">•••• •••• •••• ••••</div>
+                                    <div class="card-bottom">
+                                        <div class="card-holder" id="card-holder-preview">KART SAHİBİ</div>
+                                        <div class="card-expiry" id="card-expiry-preview">AA/YY</div>
+                                    </div>
+                                    <div class="card-brand">Premium</div>
+                                </div>
+
+                                <div class="payment-form">
+                                    <div class="form-group">
+                                        <label for="pay-name">Kart Sahibi Adı Soyadı</label>
+                                        <input type="text" id="pay-name" placeholder="Örn: Ahmet Yılmaz">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pay-number">Kart Numarası</label>
+                                        <input type="text" id="pay-number" maxlength="19" placeholder="4000 1234 5678 9010">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="pay-expiry">Son Kullanma</label>
+                                            <input type="text" id="pay-expiry" maxlength="5" placeholder="12/28">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pay-cvc">CVC (Güvenlik Kodu)</label>
+                                            <input type="password" id="pay-cvc" maxlength="3" placeholder="***">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-block" id="btn-submit-payment">Aboneliği Başlat (99 ₺ / Ay)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="premium-active-actions" class="premium-active-box" style="display:none;">
+                            <div class="alert alert-success">
+                                🎉 <strong>Harika!</strong> Mini Kâşif Premium aboneliğiniz aktiftir. Tüm kategorilere ve raporlara tam erişim hakkınız bulunmaktadır.
+                            </div>
+                            <button class="btn btn-danger btn-sm" id="btn-cancel-premium">Simüle Edilen Aboneliği İptal Et (Ücretsiz Pakete Dön)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- D. ERKEN ERİŞİM BAŞVURUSU SEKMESİ -->
+                <div id="parent-tab-early-access" class="parent-tab-content">
+                    <div class="panel-box early-access-summary-box">
+                        <h2>📋 Erken Erişim Başvuru Bilgileriniz</h2>
+                        <p class="subtitle">Mini Kâşif lansmanı öncesinde doldurduğunuz başvuru formu detayları ve özel durumunuz.</p>
+                        
+                        <div id="early-access-portal-view">
+                            <!-- Javascript ile dinamik olarak doldurulacak -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- UYKU EKRANI (SLEEP / TIME LIMIT EXPIRED SCREEN) -->
+    <section id="sleep-screen" class="screen">
+        <div class="sleep-content">
+            <div class="sleeping-mascot-animation">
+                <!-- Uykulu CSS Maskot -->
+                <div class="sleep-eyes">😴</div>
+                <div class="z-letters">
+                    <span class="z1">Z</span>
+                    <span class="z2">z</span>
+                    <span class="z3">z</span>
+                </div>
+            </div>
+            <h2>Mini Kâşif Dinleniyor... 💤</h2>
+            <p>Bugünlük bu kadar öğrenme macerası yeterli! Gözlerimizi dinlendirelim ve yarın yepyeni maceralara yelken açalım.</p>
+            
+            <div class="sleep-actions">
+                <button class="btn btn-secondary" id="btn-bypass-sleep">Ebeveyn Kilidini Aç (Süreyi Uzat)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bildirim Balonu (Toast) -->
+    <div id="toast-notification" class="toast">
+        Toast Mesajı
+    </div>
+
+    <!-- Confetti Canvas (Oyun Başarılarında Patlayacak) -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="app.js"></script>
+</body>
+</html>

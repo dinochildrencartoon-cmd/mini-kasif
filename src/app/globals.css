@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff6f61;
+  --color-primary-light: #ffebf0;
+  --color-secondary: #4ea8de;
+  --color-secondary-light: #e0f2fe;
+  --color-accent: #ffb703;
+  --color-success: #2ec4b6;
+  --color-success-light: #e6fcf5;
+  --color-danger: #e63946;
+  
+  --color-kids-purple: #9b5de5;
+  --color-kids-pink: #f15bb5;
+  --color-kids-mint: #00f5d4;
+  --color-kids-orange: #f77f00;
+
+  --font-parents: var(--font-inter), sans-serif;
+  --font-kids: var(--font-quicksand), sans-serif;
+
+  --shadow-premium: 0 20px 40px rgba(255, 111, 97, 0.2);
+
+  --animate-bounce-logo: bounce-logo 3s infinite ease-in-out;
+  --animate-morph-mascot: morph-mascot 8s infinite ease-in-out;
+  --animate-float-mascot: float-mascot 4s infinite ease-in-out;
+  --animate-shadow-scale: shadow-scale 4s infinite ease-in-out;
+  --animate-wave-left: wave-hand-left 2s infinite ease-in-out;
+  --animate-look-around: look-around 5s infinite;
+  --animate-star-pulse: star-pulse 1.5s infinite ease-in-out;
+  --animate-float-sparkle: float-sparkle 1.5s infinite ease-in-out;
+}
+
+@keyframes bounce-logo {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-5px) rotate(5deg); }
+}
+
+@keyframes morph-mascot {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  33% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 60%; }
+  66% { border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%; }
+}
+
+@keyframes float-mascot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes shadow-scale {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.8); opacity: 0.5; }
+}
+
+@keyframes wave-hand-left {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-25deg); }
+}
+
+@keyframes look-around {
+  0%, 100%, 70%, 80% { transform: translate(0, 0); }
+  10%, 25% { transform: translate(4px, -2px); }
+  35%, 55% { transform: translate(-4px, 2px); }
+}
+
+@keyframes star-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+@keyframes float-sparkle {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-10px) scale(1.1); opacity: 0.8; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-parents);
+  color: #2b3a4a;
+  background-color: #f9fbfd;
+}
+
+/* Custom styles not easily done in Tailwind */
+.kids-font {
+  font-family: var(--font-kids);
+}
+
+.text-stroke-2 {
+  -webkit-text-stroke: 2px #fff;
+}

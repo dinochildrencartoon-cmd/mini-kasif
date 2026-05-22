@@ -4,10 +4,10 @@
 
 const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
     <section id="kids-dashboard" class="screen">
-        <!-- Demo Uyarı Bannerı -->
+        <!-- Uyarı Bannerı -->
         <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
+            <span class="warning-text">⚠️ Şu anda gerçek ödeme işlemi yapılmamaktadır. Premium özellikler lansman sonrası aktif edilecektir.</span>
+            <button class="btn btn-secondary btn-sm btn-exit-demo">Ana Sayfaya Dön 🚪</button>
         </div>
         <header class="kids-header">
             <button class="btn-back-circle" id="btn-back-to-landing">
@@ -41,10 +41,10 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
 
     <!-- 3. ÇOCUK ETKİNLİK / OYUN EKRANI (KIDS ACTIVITY SCREEN) -->
     <section id="kids-activity-screen" class="screen">
-        <!-- Demo Uyarı Bannerı -->
+        <!-- Uyarı Bannerı -->
         <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
+            <span class="warning-text">⚠️ Şu anda gerçek ödeme işlemi yapılmamaktadır. Premium özellikler lansman sonrası aktif edilecektir.</span>
+            <button class="btn btn-secondary btn-sm btn-exit-demo">Ana Sayfaya Dön 🚪</button>
         </div>
         <header class="activity-header">
             <button class="btn-back-circle" id="btn-exit-activity">
@@ -157,7 +157,7 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
                 <button class="key-btn" data-key="8">8</button>
                 <button class="key-btn" data-key="9">9</button>
                 <button class="key-btn" data-key="0">0</button>
-                <button class="key-btn btn-clear" id="btn-clear-gate">Temizle</button>
+                <button class="key-btn" data-key="10" class="btn-clear" id="btn-clear-gate">Temizle</button>
             </div>
 
             <div class="gate-input-display">
@@ -174,16 +174,16 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
 
     <!-- 4. EBEVEYN PANELİ (PARENT PORTAL) -->
     <section id="parent-portal" class="screen">
-        <!-- Demo Uyarı Bannerı -->
+        <!-- Uyarı Bannerı -->
         <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
+            <span class="warning-text">⚠️ Şu anda gerçek ödeme işlemi yapılmamaktadır. Premium özellikler lansman sonrası aktif edilecektir.</span>
+            <button class="btn btn-secondary btn-sm btn-exit-demo">Ana Sayfaya Dön 🚪</button>
         </div>
 
         <header class="parent-header">
             <div class="logo">
                 <span class="logo-icon">🚀</span>
-                <span class="logo-text">Örnek Ebeveyn Paneli</span>
+                <span class="logo-text">Ebeveyn Paneli</span>
             </div>
             <button class="btn btn-secondary btn-sm" id="btn-exit-parent-portal">Çocuk Moduna Dön 🧒</button>
         </header>
@@ -209,120 +209,169 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
             <main class="parent-main">
                 <!-- A. GELİŞİM RAPORU SEKMESİ -->
                 <div id="parent-tab-dashboard" class="parent-tab-content active">
-                    <div class="parent-welcome-banner">
-                        <h2>Örnek Ebeveyn Paneli 👋</h2>
-                        <p>Bu panel, ebeveynlerin ileride görebileceği örnek kullanım ve gelişim özetini temsil eder.</p>
-                    </div>
-
-                    <!-- Özet Kartları -->
-                    <div class="stats-row">
-                        <div class="stat-card">
-                            <span class="stat-icon">⏱️</span>
-                            <div class="stat-info">
-                                <h4>Toplam Süre</h4>
-                                <p id="parent-stat-time">0 Dakika</p>
+                    <!-- FREE VIEW -->
+                    <div id="parent-dashboard-free-view" class="parent-dashboard-subview active">
+                        <div class="parent-welcome-banner">
+                            <h2>Ebeveyn Paneli (Ücretsiz Sürüm) 👋</h2>
+                            <p>Premium plan ile çocuğunuzun tüm gelişim raporlarını ve akıllı süre sınırlama ayarlarını görebilirsiniz.</p>
+                        </div>
+                        
+                        <!-- Özet Kartları (Free Sürüm) -->
+                        <div class="stats-row">
+                            <div class="stat-card">
+                                <span class="stat-icon">⏱️</span>
+                                <div class="stat-info">
+                                    <h4>Bugünkü Kullanım Süresi</h4>
+                                    <p id="parent-free-stat-time">12 Dakika</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🎬</span>
+                                <div class="stat-info">
+                                    <h4>Tamamlanan Ücretsiz İçerik</h4>
+                                    <p id="parent-free-stat-adventure">Tamamlandı ✅</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🏆</span>
+                                <div class="stat-info">
+                                    <h4>Kazanılan Rozet</h4>
+                                    <p id="parent-free-stat-badge">Mavi Kâşifi</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">⭐</span>
-                            <div class="stat-info">
-                                <h4>Kazanılan Yıldız</h4>
-                                <p id="parent-stat-stars">0 Yıldız</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">🏆</span>
-                            <div class="stat-info">
-                                <h4>Kazanılan Rozet</h4>
-                                <p id="parent-stat-badges">0 / 8 Rozet</p>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">🏃</span>
-                            <div class="stat-info">
-                                <h4>Ekran Dışı Görev</h4>
-                                <p id="parent-stat-missions">0 Görev</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Grafikler & İlerlemeler -->
-                    <div class="dashboard-details">
-                        <!-- Kategori İlerlemeleri -->
-                        <div class="panel-box flex-2">
-                            <h3>📚 Kategori Bazlı İlerleme Durumu</h3>
-                            <p class="subtitle">Çocuğunuzun tamamladığı quizlerin kategorilere göre dağılımı.</p>
-                            <div class="progress-list" id="parent-progress-list">
-                                <!-- Dinamik kategori ilerleme çubukları -->
-                            </div>
+                        
+                        <!-- Sınırlı Gelişim Özeti -->
+                        <div class="panel-box development-summary-limited" style="margin-top: 20px; padding: 20px; border-radius: var(--radius-sm); background: #f8fafc; border-left: 4px solid var(--color-primary-light);">
+                            <h3>📈 Sınırlı Gelişim Özeti</h3>
+                            <p style="margin: 8px 0 0 0; color: var(--color-text-muted);">Daha detaylı haftalık raporlar ve tüm kategoriler için Premium’u inceleyin.</p>
                         </div>
 
-                        <!-- Gelişim Grafiği (Simüle Edilmiş SVG Grafik) -->
-                        <div class="panel-box flex-1">
-                            <h3>📊 Günlük Aktivite Dağılımı</h3>
-                            <p class="subtitle">Bu hafta kullanılan ortalama süre (dakika).</p>
-                            <div class="chart-container">
-                                <svg class="bar-chart" viewBox="0 0 100 80">
-                                    <rect x="5" y="50" width="8" height="30" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="18" y="40" width="8" height="40" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="31" y="60" width="8" height="20" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="44" y="30" width="8" height="50" fill="var(--color-primary-light)" rx="2"/>
-                                    <rect x="57" y="20" width="8" height="60" fill="var(--color-primary)" rx="2"/>
-                                    <rect x="70" y="45" width="8" height="35" fill="var(--color-primary)" rx="2"/>
-                                    <rect x="83" y="10" width="8" height="70" fill="var(--color-secondary)" rx="2"/>
-                                    
-                                    <text x="9" y="78" font-size="4" text-anchor="middle" fill="#888">Pzt</text>
-                                    <text x="22" y="78" font-size="4" text-anchor="middle" fill="#888">Sal</text>
-                                    <text x="35" y="78" font-size="4" text-anchor="middle" fill="#888">Çar</text>
-                                    <text x="48" y="78" font-size="4" text-anchor="middle" fill="#888">Per</text>
-                                    <text x="61" y="78" font-size="4" text-anchor="middle" fill="#888">Cum</text>
-                                    <text x="74" y="78" font-size="4" text-anchor="middle" fill="#888">Cmt</text>
-                                    <text x="87" y="78" font-size="4" text-anchor="middle" fill="#888">Paz</text>
-                                </svg>
-                            </div>
+                        <!-- Premium Upsell Box -->
+                        <div class="parent-premium-upsell-box">
+                            <h4>💎 Premium ile Sınırsız Keşif Yolculuğu</h4>
+                            <p>Tüm kategorilere (Sayılar, Şekiller, Hayvanlar...), detaylı gelişim grafiklerine ve özelleştirilebilir ekran süresi sınırlamasına erişmek için Premium'a geçin.</p>
+                            <button class="btn btn-primary btn-go-to-billing">Premium'u İncele 🚀</button>
                         </div>
                     </div>
 
-                    <!-- Pedagojik Özet & Detaylar (Yeni Bölüm) -->
-                    <div class="dashboard-details" style="margin-top: 30px;">
-                        <!-- Bugünkü Aktivite Detayları -->
-                        <div class="panel-box flex-1">
-                            <h3>🔍 Bugünkü Aktivite Detayları</h3>
-                            <p class="subtitle">Bugün gerçekleştirilen etkinliklerin detaylı dökümü.</p>
-                            <ul class="demo-activity-details-list" style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">⏱️ Bugünkü Kullanım Süresi:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">12 dakika</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🎬 Tamamlanan İçerik:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">Mavi Rengi Keşfedelim</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🏆 Kazanılan Rozet:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">Mavi Kâşifi</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🎮 Quiz Sonucu:</span>
-                                    <strong style="color: var(--color-text); font-weight: 600;">3 sorudan 2 doğru</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">🏃 Ekran Dışı Görev:</span>
-                                    <strong style="color: #22c55e; font-weight: 600;">Tamamlandı ✅</strong>
-                                </li>
-                                <li style="display: flex; justify-content: space-between; padding-bottom: 8px;">
-                                    <span style="color: var(--color-text-muted); font-weight: 500;">💡 Öne Çıkan Beceri:</span>
-                                    <strong style="color: var(--color-secondary); font-weight: 600;">Renk tanıma ve dikkat</strong>
-                                </li>
-                            </ul>
+                    <!-- PREMIUM VIEW -->
+                    <div id="parent-dashboard-premium-view" class="parent-dashboard-subview">
+                        <div class="parent-welcome-banner">
+                            <h2>Ebeveyn Paneli (Premium Sürüm) 👋</h2>
+                            <p>Bu panel, ebeveynlerin ileride görebileceği örnek kullanım ve gelişim özetini temsil eder.</p>
                         </div>
 
-                        <!-- Pedagojik Haftalık Gelişim Özeti -->
-                        <div class="panel-box flex-1" style="background: linear-gradient(135deg, #fefefe 0%, #f0f7ff 100%); border: 1px solid var(--color-primary-light);">
-                            <h3 style="color: var(--color-primary);">🌱 Pedagojik Haftalık Gelişim Özeti</h3>
-                            <p class="subtitle">Uzman pedagoglarımızın çocuğunuzun bu haftaki gelişim analizi.</p>
-                            <div style="background-color: white; padding: 20px; border-radius: var(--radius-sm); border-left: 4px solid var(--color-primary); box-shadow: var(--shadow-sm); line-height: 1.6; color: var(--color-text);">
-                                “Bu hafta çocuğunuz renkler kategorisinde ilerleme gösterdi. Özellikle mavi ve kırmızı renkleri ayırt etme, dikkatini kısa süreli etkinliklerde toplama ve ekran dışı görevleri tamamlama alanlarında gelişim gözlemlendi.”
+                        <!-- Özet Kartları -->
+                        <div class="stats-row">
+                            <div class="stat-card">
+                                <span class="stat-icon">⏱️</span>
+                                <div class="stat-info">
+                                    <h4>Toplam Süre</h4>
+                                    <p id="parent-stat-time">0 Dakika</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">⭐</span>
+                                <div class="stat-info">
+                                    <h4>Kazanılan Yıldız</h4>
+                                    <p id="parent-stat-stars">0 Yıldız</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🏆</span>
+                                <div class="stat-info">
+                                    <h4>Kazanılan Rozet</h4>
+                                    <p id="parent-stat-badges">0 / 8 Rozet</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-icon">🏃</span>
+                                <div class="stat-info">
+                                    <h4>Ekran Dışı Görev</h4>
+                                    <p id="parent-stat-missions">0 Görev</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grafikler & İlerlemeler -->
+                        <div class="dashboard-details">
+                            <!-- Kategori İlerlemeleri -->
+                            <div class="panel-box flex-2">
+                                <h3>📚 Kategori Bazlı İlerleme Durumu</h3>
+                                <p class="subtitle">Çocuğunuzun tamamladığı quizlerin kategorilere göre dağılımı.</p>
+                                <div class="progress-list" id="parent-progress-list">
+                                    <!-- Dinamik kategori ilerleme çubukları -->
+                                </div>
+                            </div>
+
+                            <!-- Gelişim Grafiği (Simüle Edilmiş SVG Grafik) -->
+                            <div class="panel-box flex-1">
+                                <h3>📊 Günlük Aktivite Dağılımı</h3>
+                                <p class="subtitle">Bu hafta kullanılan ortalama süre (dakika).</p>
+                                <div class="chart-container">
+                                    <svg class="bar-chart" viewBox="0 0 100 80">
+                                        <rect x="5" y="50" width="8" height="30" fill="var(--color-primary-light)" rx="2"/>
+                                        <rect x="18" y="40" width="8" height="40" fill="var(--color-primary-light)" rx="2"/>
+                                        <rect x="31" y="60" width="8" height="20" fill="var(--color-primary-light)" rx="2"/>
+                                        <rect x="44" y="30" width="8" height="50" fill="var(--color-primary-light)" rx="2"/>
+                                        <rect x="57" y="20" width="8" height="60" fill="var(--color-primary)" rx="2"/>
+                                        <rect x="70" y="45" width="8" height="35" fill="var(--color-primary)" rx="2"/>
+                                        <rect x="83" y="10" width="8" height="70" fill="var(--color-secondary)" rx="2"/>
+                                        
+                                        <text x="9" y="78" font-size="4" text-anchor="middle" fill="#888">Pzt</text>
+                                        <text x="22" y="78" font-size="4" text-anchor="middle" fill="#888">Sal</text>
+                                        <text x="35" y="78" font-size="4" text-anchor="middle" fill="#888">Çar</text>
+                                        <text x="48" y="78" font-size="4" text-anchor="middle" fill="#888">Per</text>
+                                        <text x="61" y="78" font-size="4" text-anchor="middle" fill="#888">Cum</text>
+                                        <text x="74" y="78" font-size="4" text-anchor="middle" fill="#888">Cmt</text>
+                                        <text x="87" y="78" font-size="4" text-anchor="middle" fill="#888">Paz</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pedagojik Özet & Detaylar (Yeni Bölüm) -->
+                        <div class="dashboard-details" style="margin-top: 30px;">
+                            <!-- Bugünkü Aktivite Detayları -->
+                            <div class="panel-box flex-1">
+                                <h3>🔍 Bugünkü Aktivite Detayları</h3>
+                                <p class="subtitle">Bugün gerçekleştirilen etkinliklerin detaylı dökümü.</p>
+                                <ul class="demo-activity-details-list" style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+                                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                                        <span style="color: var(--color-text-muted); font-weight: 500;">⏱️ Bugünkü Kullanım Süresi:</span>
+                                        <strong style="color: var(--color-text); font-weight: 600;">12 dakika</strong>
+                                    </li>
+                                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                                        <span style="color: var(--color-text-muted); font-weight: 500;">🎬 Tamamlanan İçerik:</span>
+                                        <strong style="color: var(--color-text); font-weight: 600;">Mavi Rengi Keşfedelim</strong>
+                                    </li>
+                                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                                        <span style="color: var(--color-text-muted); font-weight: 500;">🏆 Kazanılan Rozet:</span>
+                                        <strong style="color: var(--color-text); font-weight: 600;">Mavi Kâşifi</strong>
+                                    </li>
+                                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                                        <span style="color: var(--color-text-muted); font-weight: 500;">🎮 Quiz Sonucu:</span>
+                                        <strong style="color: var(--color-text); font-weight: 600;">3 sorudan 2 doğru</strong>
+                                    </li>
+                                    <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                                        <span style="color: var(--color-text-muted); font-weight: 500;">🏃 Ekran Dışı Görev:</span>
+                                        <strong style="color: #22c55e; font-weight: 600;">Tamamlandı ✅</strong>
+                                    </li>
+                                    <li style="display: flex; justify-content: space-between; padding-bottom: 8px;">
+                                        <span style="color: var(--color-text-muted); font-weight: 500;">💡 Öne Çıkan Beceri:</span>
+                                        <strong style="color: var(--color-secondary); font-weight: 600;">Renk tanıma ve dikkat</strong>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Pedagojik Haftalık Gelişim Özeti -->
+                            <div class="panel-box flex-1" style="background: linear-gradient(135deg, #fefefe 0%, #f0f7ff 100%); border: 1px solid var(--color-primary-light);">
+                                <h3 style="color: var(--color-primary);">🌱 Pedagojik Haftalık Gelişim Özeti</h3>
+                                <p class="subtitle">Uzman pedagoglarımızın çocuğunuzun bu haftaki gelişim analizi.</p>
+                                <div style="background-color: white; padding: 20px; border-radius: var(--radius-sm); border-left: 4px solid var(--color-primary); box-shadow: var(--shadow-sm); line-height: 1.6; color: var(--color-text);">
+                                    “Bu hafta çocuğunuz renkler kategorisinde ilerleme gösterdi. Özellikle mavi ve kırmızı renkleri ayırt etme, dikkatini kısa süreli etkinliklerde toplama ve ekran dışı görevleri tamamlama alanlarında gelişim gözlemlendi.”
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -363,18 +412,18 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
                         <div class="current-subscription-status" id="billing-status-box">
                             <div class="billing-status-info">
                                 <h3>Üyelik Tipi: <span id="current-membership-label" class="badge-free">Ücretsiz Paket</span></h3>
-                                <p id="membership-details-text">Ücretsiz planda Renkler ve Sayılar kategorilerinden sınırlı içerikler sunulmaktadır. Tüm özellikler için Premium plana geçiş planlanmaktadır.</p>
+                                <p id="membership-details-text">Ücretsiz planda Renkler kategorisinden sınırlı içerikler sunulmaktadır. Tüm özellikler için Premium plana geçiş planlanmaktadır.</p>
                             </div>
                         </div>
 
-                        <!-- Yeni Ebeveyn Paneli Üyelik İlgi Alanları -->
+                        <!-- Üyelik İlgi Alanları -->
                         <div id="premium-checkout-container" class="checkout-form-wrapper">
                             <h3>Mini Kâşif Premium Deneyimi</h3>
                             <p class="subtitle">Mini Kâşif şu an lansman öncesi aşamadadır. Ürünün gelişimine katkıda bulunmak ve lansman fırsatlarından yararlanmak için ilgi durumunuzu belirtebilirsiniz:</p>
                             
                             <div class="demo-interest-actions">
                                 <button class="btn btn-primary btn-block" id="btn-demo-interest-premium">
-                                    ⭐ Premium ile İlgileniyorum (Demo Aktifleştir)
+                                    ⭐ Premium ile İlgileniyorum (Premium Özellikleri Aç)
                                 </button>
                                 <button class="btn btn-secondary btn-block" id="btn-demo-go-early">
                                     🚀 Erken Erişime Katıl
@@ -387,9 +436,9 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
 
                         <div id="premium-active-actions" class="premium-active-box" style="display:none;">
                             <div class="alert alert-success">
-                                🎉 <strong>Harika!</strong> Mini Kâşif Premium aboneliğiniz aktiftir. Tüm kategorilere ve raporlara tam erişim hakkınız bulunmaktadır.
+                                🎉 <strong>Harika!</strong> Mini Kâşif Premium özellikleri aktif edildi! Tüm kilitler açıldı.
                             </div>
-                            <button class="btn btn-danger btn-sm" id="btn-cancel-premium">Simüle Edilen Aboneliği İptal Et (Ücretsiz Pakete Dön)</button>
+                            <button class="btn btn-danger btn-sm" id="btn-cancel-premium">Premium Özellikleri Kapat (Ücretsiz Pakete Dön)</button>
                         </div>
                     </div>
                 </div>
@@ -411,10 +460,10 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
 
     <!-- UYKU EKRANI (SLEEP / TIME LIMIT EXPIRED SCREEN) -->
     <section id="sleep-screen" class="screen">
-        <!-- Demo Uyarı Bannerı -->
+        <!-- Uyarı Bannerı -->
         <div class="demo-warning-banner">
-            <span class="warning-text">⚠️ Bu alan örnek bir demo deneyimidir. Buradaki içerikler temsili olarak hazırlanmıştır; gerçek kayıt, ödeme veya veri işlemi yapılmaz.</span>
-            <button class="btn btn-secondary btn-sm btn-exit-demo">Demo'dan Çık 🚪</button>
+            <span class="warning-text">⚠️ Şu anda gerçek ödeme işlemi yapılmamaktadır. Premium özellikler lansman sonrası aktif edilecektir.</span>
+            <button class="btn btn-secondary btn-sm btn-exit-demo">Ana Sayfaya Dön 🚪</button>
         </div>
         <div class="sleep-content">
             <div class="sleeping-mascot-animation">
@@ -435,46 +484,17 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
         </div>
     </section>
 
-    <!-- DEMO BAŞLANGIÇ SEÇİMİ MODALI (DEMO WELCOME MODAL) -->
-    <div id="demo-welcome-modal" class="modal-overlay">
-        <div class="modal-card demo-welcome-card">
-            <button class="modal-close" id="btn-close-demo-welcome">×</button>
-            <div class="demo-welcome-header">
-                <span class="welcome-emoji">🎮</span>
-                <h2>Mini Kâşif Demo Dünyası</h2>
-                <p>Uygulamayı hemen keşfetmek için bir deneyim modu seçin:</p>
+    <!-- PREMIUM UPSELL MODAL -->
+    <div id="premium-upsell-modal" class="modal-overlay">
+        <div class="modal-card premium-upsell-card">
+            <span class="premium-upsell-icon">💎</span>
+            <h3>Premium Maceralar Seni Bekliyor!</h3>
+            <p>Bu kategori Premium plan ile açılır. Çocuğunuzun tüm öğrenme alanlarına erişmesi için Premium’a geçebilirsiniz.</p>
+            <div class="premium-upsell-actions">
+                <button class="btn btn-primary" id="btn-upsell-review-premium">Premium'u İncele 🚀</button>
+                <button class="btn btn-secondary" id="btn-upsell-continue-free">Şimdilik Renkler ile Devam Et 🧒</button>
             </div>
-            <div class="demo-options-grid">
-                <button class="demo-option-btn" id="btn-demo-start-kids">
-                    <span class="option-icon">🧒</span>
-                    <h3>Çocuk Deneyimini Başlat</h3>
-                    <p>Sesli anlatımlı mini oyunlar, rozetler ve eğlenceli çocuk arayüzü.</p>
-                </button>
-                <button class="demo-option-btn" id="btn-demo-start-parent">
-                    <span class="option-icon">🔒</span>
-                    <h3>Ebeveyn Panelini İncele</h3>
-                    <p>Gelişim raporları, süre sınırları ve örnek ebeveyn kontrolleri.</p>
-                </button>
-            </div>
-    <!-- Demo Hızlı İlerleme Menüsü (Floating Guide) -->
-    
-            </div> <!-- closes demo-options-grid -->
-        </div> <!-- closes modal-card -->
-    </div> <!-- closes demo-welcome-modal -->
-
-    <div id="demo-guide-panel" class="demo-guide-panel" style="display: none;">
-        <div class="demo-guide-header">
-            <span class="guide-sparkle">✨</span>
-            <h4>Demo Adımları</h4>
         </div>
-        <div class="demo-guide-buttons">
-            <button class="demo-guide-btn" id="btn-guide-video">🎬 Videoyu İzle</button>
-            <button class="demo-guide-btn" id="btn-guide-quiz">🎮 Soruları Çöz</button>
-            <button class="demo-guide-btn" id="btn-guide-mission">🏃 Görevi Gör</button>
-            <button class="demo-guide-btn" id="btn-guide-badge">🏆 Rozetimi Gör</button>
-            <button class="demo-guide-btn" id="btn-guide-parent">🔒 Ebeveyn Panelini Gör</button>
-        </div>
-        <button class="demo-guide-exit" id="btn-guide-exit-early">Erken Erişime Katıl 🚀</button>
     </div>
 
     <!-- Bildirim Balonu (Toast) -->
@@ -483,8 +503,8 @@ const DEMO_HTML = `<!-- 2. ÇOCUK ANA EKRANI (KIDS DASHBOARD) -->
     </div>
 
     <!-- Confetti Canvas (Oyun Başarılarında Patlayacak) -->
-    <canvas id="confetti-canvas"></canvas>`;
-
+    <canvas id="confetti-canvas"></canvas>
+`;
 class MiniKasifApp {
     constructor() {
         // 1. Varsayılan Durum (State) Yönetimi ve localStorage Yükleme
@@ -921,7 +941,7 @@ class MiniKasifApp {
         "title": "Sayılar",
         "emoji": "🔢",
         "color": "var(--color-secondary)",
-        "isFree": true,
+        "isFree": false,
         "adventures": [
             {
                 "title": "Parmaklarımızla Sayalım: 1, 2, 3",
@@ -3845,11 +3865,11 @@ class MiniKasifApp {
             audioIndicator.addEventListener('click', () => this.toggleMute());
         }
 
-        // Demo Tetikleyicileri (SPA navigasyon)
+        // Ücretsiz Başla/Premium İncele Tetikleyicileri (SPA navigasyon)
         document.querySelectorAll('.btn-demo-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                const targetPath = btn.getAttribute('href') || '/demo';
+                const targetPath = btn.getAttribute('href') || '/free-trial';
                 history.pushState(null, '', targetPath);
                 this.handleRouting();
             });
@@ -3857,33 +3877,37 @@ class MiniKasifApp {
     }
 
     setupDemoEventListeners() {
-        // Demo Hoş Geldiniz Modalı Kapatma
-        const btnCloseDemoWelcome = document.getElementById('btn-close-demo-welcome');
-        if (btnCloseDemoWelcome) {
-            btnCloseDemoWelcome.addEventListener('click', () => this.closeModal('demo-welcome-modal'));
-        }
-
-        // Demo Çocuk Deneyimini Başlat
-        const btnDemoStartKids = document.getElementById('btn-demo-start-kids');
-        if (btnDemoStartKids) {
-            btnDemoStartKids.addEventListener('click', () => {
-                this.closeModal('demo-welcome-modal');
-                this.navigateTo('kids-dashboard');
-                this.showToast("Demo deneyimi başlatıldı.");
+        // Premium Upsell Modalı Butonları
+        const btnUpsellReviewPremium = document.getElementById('btn-upsell-review-premium');
+        if (btnUpsellReviewPremium) {
+            btnUpsellReviewPremium.addEventListener('click', () => {
+                this.closeModal('premium-upsell-modal');
+                history.pushState(null, '', '/');
+                this.handleRouting();
+                setTimeout(() => {
+                    const section = document.getElementById('early-access-section');
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
             });
         }
 
-        // Demo Ebeveyn Panelini İncele
-        const btnDemoStartParent = document.getElementById('btn-demo-start-parent');
-        if (btnDemoStartParent) {
-            btnDemoStartParent.addEventListener('click', () => {
-                this.closeModal('demo-welcome-modal');
-                this.openParentGate('dashboard');
-                this.showToast("Demo deneyimi başlatıldı.");
+        const btnUpsellContinueFree = document.getElementById('btn-upsell-continue-free');
+        if (btnUpsellContinueFree) {
+            btnUpsellContinueFree.addEventListener('click', () => {
+                this.closeModal('premium-upsell-modal');
             });
         }
 
-        // Demo'dan Çıkış (Warning Banner Butonları)
+        // Parent paneli içindeki Premium İncele butonu yönlendirmesi
+        document.querySelectorAll('.btn-go-to-billing').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.switchParentTab('billing');
+            });
+        });
+
+        // Ücretsiz Kullanımdan Çıkış (Warning Banner Butonları)
         document.querySelectorAll('.btn-exit-demo').forEach(btn => {
             btn.addEventListener('click', () => {
                 history.pushState(null, '', '/');
@@ -4019,7 +4043,7 @@ class MiniKasifApp {
             });
         });
 
-        // Demo Üyelik Sekmesi Butonları
+        // Premium Üyelik Sekmesi Butonları
         const btnDemoInterestPremium = document.getElementById('btn-demo-interest-premium');
         if (btnDemoInterestPremium) {
             btnDemoInterestPremium.addEventListener('click', () => this.activatePremiumDemo());
@@ -4055,92 +4079,25 @@ class MiniKasifApp {
         if (btnBypassSleep) {
             btnBypassSleep.addEventListener('click', () => this.openParentGate('bypass-sleep'));
         }
-
-        // Demo Hızlı İlerleme Menüsü Butonları
-        const btnGuideVideo = document.getElementById('btn-guide-video');
-        if (btnGuideVideo) {
-            btnGuideVideo.addEventListener('click', () => {
-                const cat = this.categoriesData['colors'];
-                if (cat) {
-                    this.currentCategory = cat;
-                    this.currentView = 'adventures';
-                    const adv = cat.adventures.find(a => a.title === 'Mavi Rengi Keşfedelim');
-                    if (adv) {
-                        this.selectAdventure(adv);
-                        this.switchActivityTab('video');
-                    }
-                }
-            });
-        }
-        
-        const btnGuideQuiz = document.getElementById('btn-guide-quiz');
-        if (btnGuideQuiz) {
-            btnGuideQuiz.addEventListener('click', () => {
-                const cat = this.categoriesData['colors'];
-                if (cat) {
-                    this.currentCategory = cat;
-                    this.currentView = 'adventures';
-                    const adv = cat.adventures.find(a => a.title === 'Mavi Rengi Keşfedelim');
-                    if (adv) {
-                        this.selectAdventure(adv);
-                        this.switchActivityTab('quiz');
-                    }
-                }
-            });
-        }
-
-        const btnGuideMission = document.getElementById('btn-guide-mission');
-        if (btnGuideMission) {
-            btnGuideMission.addEventListener('click', () => {
-                const cat = this.categoriesData['colors'];
-                if (cat) {
-                    this.currentCategory = cat;
-                    this.currentView = 'adventures';
-                    const adv = cat.adventures.find(a => a.title === 'Mavi Rengi Keşfedelim');
-                    if (adv) {
-                        this.currentAdventure = adv;
-                        this.openOfflineMissionModal();
-                    }
-                }
-            });
-        }
-
-        const btnGuideBadge = document.getElementById('btn-guide-badge');
-        if (btnGuideBadge) {
-            btnGuideBadge.addEventListener('click', () => this.showMyBadges());
-        }
-
-        const btnGuideParent = document.getElementById('btn-guide-parent');
-        if (btnGuideParent) {
-            btnGuideParent.addEventListener('click', () => this.openParentGate('dashboard'));
-        }
-
-        const btnGuideExitEarly = document.getElementById('btn-guide-exit-early');
-        if (btnGuideExitEarly) {
-            btnGuideExitEarly.addEventListener('click', () => {
-                history.pushState(null, '', '/');
-                this.handleRouting();
-                setTimeout(() => {
-                    const section = document.getElementById('early-access-section');
-                    if (section) {
-                        section.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }, 100);
-            });
-        }
     }
 
     handleRouting(isInitialLoad = false) {
         const path = window.location.pathname;
+        if (path === '/demo' || path === '/demo/' || path === '/demo/parent' || path === '/demo/parent/') {
+            const newPath = path.replace('/demo', '/free-trial');
+            history.replaceState(null, '', newPath);
+            this.handleRouting(isInitialLoad);
+            return;
+        }
         const container = document.getElementById('demo-container');
 
-        if (path === '/demo' || path === '/demo/' || path === '/demo/parent' || path === '/demo/parent/') {
+        if (path === '/free-trial' || path === '/free-trial/' || path === '/free-trial/parent' || path === '/free-trial/parent/') {
             // Inject DEMO_HTML if not already present
             if (container && !container.querySelector('#kids-dashboard')) {
                 container.innerHTML = DEMO_HTML;
                 this.setupDemoEventListeners();
                 
-                // Initialize demo variables & UI state
+                // Initialize variables & UI state
                 this.updateStarUI();
                 this.renderCategories();
                 this.startSessionTimer();
@@ -4157,9 +4114,9 @@ class MiniKasifApp {
 
             if (path.includes('/parent')) {
                 // Navigate directly to parent-portal
-                document.title = "Mini Kâşif Örnek Ebeveyn Paneli";
+                document.title = "Mini Kâşif Ebeveyn Paneli";
                 const descMeta = document.querySelector('meta[name="description"]');
-                if (descMeta) descMeta.setAttribute('content', 'Mini Kâşif ebeveyn gelişim takip paneli demo sürümü.');
+                if (descMeta) descMeta.setAttribute('content', 'Mini Kâşif ebeveyn gelişim takip paneli.');
                 
                 // If there's billing tab requested from executeGateAction
                 const state = history.state;
@@ -4171,14 +4128,13 @@ class MiniKasifApp {
                 }
             } else {
                 // Navigate to kids-dashboard
-                document.title = "Mini Kâşif Demo Deneyimi";
+                document.title = "Mini Kâşif Çocuk Dünyası";
                 const descMeta = document.querySelector('meta[name="description"]');
-                if (descMeta) descMeta.setAttribute('content', 'Mini Kâşif çocuk gelişim ve oyun dünyası demo sürümü.');
+                if (descMeta) descMeta.setAttribute('content', 'Mini Kâşif çocuk gelişim ve oyun dünyası.');
                 
                 this.navigateTo('kids-dashboard');
-                this.openModal('demo-welcome-modal');
                 if (isInitialLoad) {
-                    this.showToast("Demo deneyimi başlatıldı.");
+                    this.showToast("Ücretsiz kullanım başladı.");
                 }
             }
         } else {
@@ -4371,11 +4327,7 @@ class MiniKasifApp {
             this.activeScreen = screenId;
         }
 
-        // Hızlı Yönlendirme Menüsünü Göster/Gizle
-        const guidePanel = document.getElementById('demo-guide-panel');
-        if (guidePanel) {
-            guidePanel.style.display = (screenId === 'landing-screen') ? 'none' : 'flex';
-        }
+
 
         // Ekran bazlı özel işlemler
         if (screenId === 'kids-dashboard') {
@@ -4428,14 +4380,29 @@ class MiniKasifApp {
                 const advKey = `${this.currentCategory.id}_${adv.title}`;
                 const isCompleted = this.state.completedAdventures && this.state.completedAdventures.includes(advKey);
                 
+                // Ücretsiz planda sadece Renkler kategorisinden "Mavi Rengi Keşfedelim" içeriği açık
+                const isLocked = !this.state.isPremium && 
+                                 (this.currentCategory.id !== 'colors' || adv.title !== 'Mavi Rengi Keşfedelim');
+                
                 const card = document.createElement('div');
-                card.className = `category-card adventure-card ${isCompleted ? 'completed' : ''}`;
+                card.className = `category-card adventure-card ${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}`;
                 card.style.borderColor = this.currentCategory.color;
                 
-                card.addEventListener('click', () => this.selectAdventure(adv));
+                if (isLocked) {
+                    card.addEventListener('click', () => {
+                        const upsellMsg = document.querySelector('#premium-upsell-modal p');
+                        if (upsellMsg) {
+                            upsellMsg.innerText = "Bu macera Premium plan ile açılır. Çocuğunuzun tüm öğrenme alanlarına erişmesi için Premium’a geçebilirsiniz.";
+                        }
+                        this.speak("Bu macera Premium plan ile açılır.");
+                        this.openModal('premium-upsell-modal');
+                    });
+                } else {
+                    card.addEventListener('click', () => this.selectAdventure(adv));
+                }
 
                 card.innerHTML = `
-                    ${isCompleted ? `<div class="lock-ribbon" style="background-color: var(--color-success)">🌟 Tamamlandı</div>` : ''}
+                    ${isLocked ? `<div class="lock-ribbon">🔒 Premium</div>` : (isCompleted ? `<div class="lock-ribbon" style="background-color: var(--color-success)">🌟 Tamamlandı</div>` : '')}
                     <span class="card-emoji">${adv.emoji || '🚀'}</span>
                     <h3>${adv.title}</h3>
                     <div class="adventure-age-tag">${adv.ageRecommendation}</div>
@@ -4452,8 +4419,12 @@ class MiniKasifApp {
 
         const isLocked = !cat.isFree && !this.state.isPremium;
         if (isLocked) {
-            this.speak("Burayı açmak için anne veya babana danışmalısın!");
-            this.showToast("Bu kategori Premium pakete dahildir. Ebeveyn kilidini aşarak inceleyebilirsiniz.");
+            const upsellMsg = document.querySelector('#premium-upsell-modal p');
+            if (upsellMsg) {
+                upsellMsg.innerText = "Bu kategori Premium plan ile açılır. Çocuğunuzun tüm öğrenme alanlarına erişmesi için Premium’a geçebilirsiniz.";
+            }
+            this.speak("Bu kategori Premium plan ile açılır.");
+            this.openModal('premium-upsell-modal');
             return;
         }
 
@@ -4817,11 +4788,11 @@ class MiniKasifApp {
         
         switch (this.gatePendingAction) {
             case 'dashboard':
-                history.pushState(null, '', '/demo/parent');
+                history.pushState(null, '', '/free-trial/parent');
                 this.handleRouting();
                 break;
             case 'premium':
-                history.pushState({ tab: 'billing' }, '', '/demo/parent');
+                history.pushState({ tab: 'billing' }, '', '/free-trial/parent');
                 this.handleRouting();
                 break;
             case 'bypass-sleep':
@@ -4829,7 +4800,7 @@ class MiniKasifApp {
                 this.state.screenTimeLimit = Math.max(15, this.state.screenTimeLimit + 15);
                 this.sessionTimeRemaining = 15 * 60; // 15 dk daha ver
                 this.saveState();
-                history.pushState(null, '', '/demo');
+                history.pushState(null, '', '/free-trial');
                 this.handleRouting();
                 this.showToast("Ekran süresi 15 dakika uzatıldı!");
                 break;
@@ -4880,36 +4851,66 @@ class MiniKasifApp {
     }
 
     exitParentPortal() {
-        history.pushState(null, '', '/demo');
+        history.pushState(null, '', '/free-trial');
         this.handleRouting();
     }
 
     renderParentDashboard() {
-        // İstatistik kartlarını doldur
-        document.getElementById('parent-stat-time').innerText = `${this.state.timeSpent} Dakika`;
-        document.getElementById('parent-stat-stars').innerText = `${this.state.starsCount} Yıldız`;
-        document.getElementById('parent-stat-badges').innerText = `${this.state.unlockedBadges.length} / 8 Rozet`;
-        document.getElementById('parent-stat-missions').innerText = `${this.state.completedMissions} Görev`;
+        const freeView = document.getElementById('parent-dashboard-free-view');
+        const premiumView = document.getElementById('parent-dashboard-premium-view');
+        
+        if (this.state.isPremium) {
+            if (freeView) freeView.classList.remove('active');
+            if (premiumView) premiumView.classList.add('active');
+            
+            // İstatistik kartlarını doldur
+            document.getElementById('parent-stat-time').innerText = `${this.state.timeSpent} Dakika`;
+            document.getElementById('parent-stat-stars').innerText = `${this.state.starsCount} Yıldız`;
+            document.getElementById('parent-stat-badges').innerText = `${this.state.unlockedBadges.length} / 8 Rozet`;
+            document.getElementById('parent-stat-missions').innerText = `${this.state.completedMissions} Görev`;
 
-        // Kategori ilerlemelerini listele
-        const listContainer = document.getElementById('parent-progress-list');
-        listContainer.innerHTML = '';
+            // Kategori ilerlemelerini listele
+            const listContainer = document.getElementById('parent-progress-list');
+            listContainer.innerHTML = '';
 
-        Object.values(this.categoriesData).forEach(cat => {
-            const prog = this.state.progress[cat.id] || 0;
-            const item = document.createElement('div');
-            item.className = 'progress-item';
-            item.innerHTML = `
-                <div class="progress-item-label">
-                    <span>${cat.emoji} ${cat.title}</span>
-                    <span>%${prog}</span>
-                </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" style="width: ${prog}%; background-color: ${cat.color}"></div>
-                </div>
-            `;
-            listContainer.appendChild(item);
-        });
+            Object.values(this.categoriesData).forEach(cat => {
+                const prog = this.state.progress[cat.id] || 0;
+                const item = document.createElement('div');
+                item.className = 'progress-item';
+                item.innerHTML = `
+                    <div class="progress-item-label">
+                        <span>${cat.emoji} ${cat.title}</span>
+                        <span>%${prog}</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: ${prog}%; background-color: ${cat.color}"></div>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+        } else {
+            if (freeView) freeView.classList.add('active');
+            if (premiumView) premiumView.classList.remove('active');
+            
+            // Ücretsiz görünüm istatistiklerini doldur
+            const timeEl = document.getElementById('parent-free-stat-time');
+            if (timeEl) {
+                timeEl.innerText = `${this.state.timeSpent || 0} Dakika`;
+            }
+            
+            const advEl = document.getElementById('parent-free-stat-adventure');
+            if (advEl) {
+                const isCompleted = this.state.completedAdventures && this.state.completedAdventures.includes("colors_Mavi Rengi Keşfedelim");
+                advEl.innerText = isCompleted ? "Tamamlandı ✅" : "Başlanmadı ❌";
+            }
+            
+            const badgeEl = document.getElementById('parent-free-stat-badge');
+            if (badgeEl) {
+                const hasBadge = this.state.unlockedBadges && 
+                                 (this.state.unlockedBadges.includes("🔵 Mavi Kâşifi") || this.state.unlockedBadges.includes("Mavi Kâşifi"));
+                badgeEl.innerText = hasBadge ? "Mavi Kâşifi 🏆" : "Kazanılmadı 🔒";
+            }
+        }
 
         // Süre sınırlayıcı sekmelerini de güncelle
         this.updateLimitUI();
@@ -4960,14 +4961,14 @@ class MiniKasifApp {
         if (this.state.isPremium) {
             label.innerText = 'Premium Üye';
             label.className = 'badge-premium';
-            desc.innerText = 'Harika! Mini Kâşif dünyasındaki 8 kategorinin tamamı, ekran dışı görevler ve sınırsız raporlama açık.';
+            desc.innerText = 'Mini Kâşif Premium özellikleri aktif edildi! Tüm kilitler açıldı.';
             checkoutForm.style.display = 'none';
             activeActions.style.display = 'block';
             billingBox.style.borderColor = 'var(--color-accent)';
         } else {
             label.innerText = 'Ücretsiz Paket';
             label.className = 'badge-free';
-            desc.innerText = 'Ücretsiz planda Renkler ve Sayılar kategorilerinden sınırlı içerikler sunulmaktadır. Gelişmiş ebeveyn özellikleri ve tüm içerikler için Premium plana geçiş planlanmaktadır.';
+            desc.innerText = 'Ücretsiz planda Renkler kategorisinden sınırlı içerikler sunulmaktadır. Gelişmiş ebeveyn özellikleri ve tüm içerikler için Premium plana geçiş planlanmaktadır.';
             checkoutForm.style.display = 'block';
             activeActions.style.display = 'none';
             billingBox.style.borderColor = '#cbd5e1';
@@ -4981,7 +4982,7 @@ class MiniKasifApp {
         this.renderCategories(); // Çocuk ekranındaki kilitleri kaldır
         this.playEffect('victory');
         this.triggerConfetti();
-        this.showToast("Mini Kâşif Premium demo modu başarıyla aktif edildi! Tüm kilitler açıldı. 🚀");
+        this.showToast("Mini Kâşif Premium özellikleri aktif edildi! Tüm kilitler açıldı. 🚀");
     }
 
     cancelPremiumSim() {
@@ -4989,7 +4990,7 @@ class MiniKasifApp {
         this.saveState();
         this.updateSubscriptionBillingUI();
         this.renderCategories();
-        this.showToast("Abonelik iptal edildi (Ücretsiz pakete dönüldü).");
+        this.showToast("Premium özellikleri kapatıldı (Ücretsiz pakete dönüldü).");
     }
 
     // 9. SÜRE SAYAÇ MOTORU (GÜNLÜK LİMİT KONTROLÜ)
@@ -5226,13 +5227,20 @@ class MiniKasifApp {
             card.className = 'landing-category-card';
             card.style.borderBottomColor = cat.color || 'var(--color-primary)';
             
-            // İlk 3 macera adını topla
-            const adventureNames = cat.adventures.slice(0, 3).map(adv => adv.title).join(', ');
+            const isFree = cat.isFree;
+            const badgeHTML = isFree 
+                ? `<span class="badge free-badge">Ücretsiz</span>` 
+                : `<span class="badge premium-badge">🔒 Premium</span>`;
+            
+            const descriptionHTML = isFree 
+                ? `"Mavi Rengi Keşfedelim" içeriği açık` 
+                : `Premium ile açılır`;
             
             card.innerHTML = `
+                ${badgeHTML}
                 <span class="landing-category-emoji">${cat.emoji}</span>
                 <h3>${cat.title}</h3>
-                <p>${adventureNames} ve daha fazlası...</p>
+                <p>${descriptionHTML}</p>
             `;
             grid.appendChild(card);
         });

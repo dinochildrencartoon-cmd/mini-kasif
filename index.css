@@ -2716,3 +2716,83 @@ body {
     }
 }
 
+/* Ethics Bullets Styling */
+.ethics-bullets {
+    margin-top: 15px;
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.ethics-bullets li {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Landing Page Footer Styling */
+.landing-footer {
+    background-color: #1e293b; /* Slate 800 */
+    color: #cbd5e1; /* Muted gray text */
+    padding: 45px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-parents);
+}
+
+.landing-footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.landing-footer .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: var(--font-kids);
+}
+
+.landing-footer .footer-tagline {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.landing-footer .footer-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.landing-footer .footer-links a {
+    color: #ff6f61; /* Primary brand color on dark background */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.landing-footer .footer-links a:hover {
+    color: #ff4f44;
+}
+
+.landing-footer .footer-separator {
+    color: #475569;
+}
+
+.landing-footer .footer-copyright {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 10px;
+}
+

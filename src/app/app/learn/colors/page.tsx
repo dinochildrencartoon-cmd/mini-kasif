@@ -65,39 +65,51 @@ export default function ColorsAdventure() {
       title: "Kırmızı Elma Nerede?",
       isFree: false,
       desc: "Tatlı elmalarla kırmızının canlılığını keşfedelim.",
-      videoText: "",
-      videoVoice: "",
-      quizQuestion: "",
-      quizHint: "",
-      options: [],
-      mission: "",
-      badge: "",
+      videoText: "Sevimli elma ağacındaki kırmızı elmaları keşfedelim! Kırmızı, elmaların, çileklerin ve sevginin rengidir.",
+      videoVoice: "Tatlı elmalar ve parlak çilekler eşliğinde kırmızının enerjik dünyasını keşfe çıkıyoruz. Ağaçtaki kırmızı elmaları görebiliyor musun?",
+      quizQuestion: "Hangisi kırmızı renklidir? 🍎",
+      quizHint: "Kırmızı renk elmalarda, domateslerde ve çileklerde bulunur. Tekrar deneyelim!",
+      options: [
+        { emoji: "🍎", text: "Elma", isCorrect: true },
+        { emoji: "🍌", text: "Muz", isCorrect: false },
+        { emoji: "🐬", text: "Yunus", isCorrect: false },
+      ],
+      mission: "Mutfaktan veya evden 3 tane kırmızı renkli yiyecek veya eşya bul ve ebeveynine göster!",
+      badge: "🔴 Kırmızı Kâşifi",
     },
     {
       id: "sari",
       title: "Sarı Güneş ve Yıldızlar",
       isFree: false,
       desc: "Dünyamızı ısıtan sarı güneşi ve parıldayan yıldızları tanıyalım.",
-      videoText: "",
-      videoVoice: "",
-      quizQuestion: "",
-      quizHint: "",
-      options: [],
-      mission: "",
-      badge: "",
+      videoText: "Gökyüzünde parıldayan sarı güneşi ve yıldızları izleyelim! Sarı, güneşin, muzların ve neşeli yıldızların rengidir.",
+      videoVoice: "Dünyamızı ısıtan sıcacık güneşin ve geceleri parıldayan neşeli sarı yıldızların dünyasına hoş geldiniz.",
+      quizQuestion: "Hangisi sarı renklidir? ☀️",
+      quizHint: "Sarı renk güneşte, muzda ve parıldayan yıldızlarda bulunur. Bir kez daha bakalım!",
+      options: [
+        { emoji: "🍌", text: "Muz", isCorrect: true },
+        { emoji: "🍓", text: "Çilek", isCorrect: false },
+        { emoji: "🐳", text: "Balina", isCorrect: false },
+      ],
+      mission: "Gökyüzüne bak veya evde sarı renkli bir eşya bulup ebeveynine ne olduğunu anlat!",
+      badge: "🟡 Sarı Kâşifi",
     },
     {
       id: "yesil",
       title: "Yeşil Yaprakların Sırrı",
       isFree: false,
       desc: "Doğadaki taze çimenleri ve ormanları süsleyen yeşil rengini keşfedelim.",
-      videoText: "",
-      videoVoice: "",
-      quizQuestion: "",
-      quizHint: "",
-      options: [],
-      mission: "",
-      badge: "",
+      videoText: "Taze çimenlerin ve yeşil yaprakların sırrını keşfedelim! Yeşil, ormanların, yaprakların ve sevimli kurbağaların rengidir.",
+      videoVoice: "Doğanın huzur veren yeşil tonlarını, taze çimenleri ve ağaçlardaki sevimli yeşil yaprakları keşfediyoruz.",
+      quizQuestion: "Hangisi yeşil renklidir? 🐸",
+      quizHint: "Yeşil renk kurbağalarda, yapraklarda ve çimenlerde bulunur. Tekrar aramaya ne dersin?",
+      options: [
+        { emoji: "🐸", text: "Kurbağa", isCorrect: true },
+        { emoji: "🍋", text: "Limon", isCorrect: false },
+        { emoji: "🍅", text: "Domates", isCorrect: false },
+      ],
+      mission: "Bahçedeki veya saksıdaki yeşil bir yaprağı incele ve yaprağın şeklini ebeveynine tarif et!",
+      badge: "🟢 Yeşil Kâşifi",
     },
   ];
 
@@ -283,27 +295,113 @@ export default function ColorsAdventure() {
             {activeTab === "video" && (
               <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-md space-y-6 flex flex-col items-center">
                 {/* Visual Simulation Canvas */}
-                <div className="w-full h-64 bg-slate-900 rounded-2xl relative overflow-hidden flex items-center justify-center border-4 border-slate-950">
-                  {/* Sky background */}
-                  <div className="absolute inset-0 bg-sky-400 flex items-center justify-center animate-pulse" />
-                  
-                  {/* Sea waves background */}
-                  <div className="absolute bottom-0 inset-x-0 h-1/2 bg-blue-600/80 rounded-b-xl border-t border-sky-200 flex items-center justify-center" />
+                <div className="w-full h-64 rounded-2xl relative overflow-hidden flex items-center justify-center border-4 border-slate-950 bg-slate-900">
+                  {selectedAdventure.id === "mavi" && (
+                    <>
+                      {/* Sky background */}
+                      <div className="absolute inset-0 bg-sky-400 flex items-center justify-center animate-pulse" />
+                      
+                      {/* Sea waves background */}
+                      <div className="absolute bottom-0 inset-x-0 h-1/2 bg-blue-600/80 rounded-b-xl border-t border-sky-200 flex items-center justify-center" />
 
-                  {/* Fish animation */}
-                  <div className="absolute animate-float-mascot left-1/3 bottom-12 flex flex-col items-center select-none">
-                    <span className="text-7xl animate-bounce-logo duration-1000">🐟</span>
-                    <span className="bg-white/80 text-blue-700 font-kids font-bold text-xs px-2 py-0.5 rounded-full shadow-sm mt-2">
-                      Mavi Balık
-                    </span>
-                  </div>
+                      {/* Fish animation */}
+                      <div className="absolute animate-float-mascot left-1/3 bottom-12 flex flex-col items-center select-none">
+                        <span className="text-7xl animate-bounce-logo duration-1000">🐟</span>
+                        <span className="bg-white/80 text-blue-700 font-kids font-bold text-xs px-2 py-0.5 rounded-full shadow-sm mt-2">
+                          Mavi Balık
+                        </span>
+                      </div>
 
-                  <div className="absolute animate-float-sparkle right-1/4 top-8 flex flex-col items-center select-none">
-                    <span className="text-5xl">☁️</span>
-                    <span className="bg-white/80 text-sky-700 font-kids font-bold text-[10px] px-2 py-0.5 rounded-full shadow-sm mt-1">
-                      Mavi Gökyüzü
-                    </span>
-                  </div>
+                      <div className="absolute animate-float-sparkle right-1/4 top-8 flex flex-col items-center select-none">
+                        <span className="text-5xl">☁️</span>
+                        <span className="bg-white/80 text-sky-700 font-kids font-bold text-[10px] px-2 py-0.5 rounded-full shadow-sm mt-1">
+                          Mavi Gökyüzü
+                        </span>
+                      </div>
+                    </>
+                  )}
+
+                  {selectedAdventure.id === "kirmizi" && (
+                    <>
+                      {/* Red orchard background */}
+                      <div className="absolute inset-0 bg-rose-300 flex items-center justify-center animate-pulse" />
+                      
+                      {/* Green grass hill background */}
+                      <div className="absolute bottom-0 inset-x-0 h-1/3 bg-emerald-500 rounded-b-xl border-t border-emerald-200 flex items-center justify-center" />
+
+                      {/* Apple tree and red apples */}
+                      <div className="absolute left-10 bottom-6 select-none flex flex-col items-center">
+                        <span className="text-8xl">🌳</span>
+                      </div>
+
+                      <div className="absolute animate-float-mascot left-1/2 bottom-12 flex flex-col items-center select-none">
+                        <span className="text-7xl animate-bounce-logo duration-1000">🍎</span>
+                        <span className="bg-white/80 text-rose-700 font-kids font-bold text-xs px-2 py-0.5 rounded-full shadow-sm mt-2">
+                          Kırmızı Elma
+                        </span>
+                      </div>
+
+                      <div className="absolute animate-float-sparkle right-10 top-8 flex flex-col items-center select-none">
+                        <span className="text-5xl">🍓</span>
+                        <span className="bg-white/80 text-rose-600 font-kids font-bold text-[10px] px-2 py-0.5 rounded-full shadow-sm mt-1">
+                          Çilek
+                        </span>
+                      </div>
+                    </>
+                  )}
+
+                  {selectedAdventure.id === "sari" && (
+                    <>
+                      {/* Yellow sky background */}
+                      <div className="absolute inset-0 bg-amber-100 flex items-center justify-center animate-pulse" />
+
+                      {/* Bouncing yellow sun */}
+                      <div className="absolute animate-float-mascot left-1/4 top-8 flex flex-col items-center select-none">
+                        <span className="text-8xl animate-bounce-logo duration-1000">☀️</span>
+                        <span className="bg-white/80 text-amber-600 font-kids font-bold text-xs px-2 py-0.5 rounded-full shadow-sm mt-2">
+                          Sarı Güneş
+                        </span>
+                      </div>
+
+                      {/* Yellow stars */}
+                      <div className="absolute animate-float-sparkle right-1/3 bottom-12 flex flex-col items-center select-none">
+                        <span className="text-6xl">⭐</span>
+                        <span className="bg-white/80 text-amber-500 font-kids font-bold text-[10px] px-2 py-0.5 rounded-full shadow-sm mt-1">
+                          Sarı Yıldız
+                        </span>
+                      </div>
+                      
+                      <div className="absolute right-10 top-10 select-none">
+                        <span className="text-5xl">🌙</span>
+                      </div>
+                    </>
+                  )}
+
+                  {selectedAdventure.id === "yesil" && (
+                    <>
+                      {/* Forest background */}
+                      <div className="absolute inset-0 bg-emerald-100 flex items-center justify-center animate-pulse" />
+                      
+                      {/* Grass floor */}
+                      <div className="absolute bottom-0 inset-x-0 h-1/2 bg-emerald-600 rounded-b-xl border-t border-emerald-400 flex items-center justify-center" />
+
+                      {/* Frog animation */}
+                      <div className="absolute animate-float-mascot left-1/3 bottom-12 flex flex-col items-center select-none">
+                        <span className="text-7xl animate-bounce-logo duration-1000">🐸</span>
+                        <span className="bg-white/80 text-emerald-800 font-kids font-bold text-xs px-2 py-0.5 rounded-full shadow-sm mt-2">
+                          Yeşil Kurbağa
+                        </span>
+                      </div>
+
+                      {/* Green leaf */}
+                      <div className="absolute animate-float-sparkle right-1/4 top-12 flex flex-col items-center select-none">
+                        <span className="text-6xl">🍃</span>
+                        <span className="bg-white/80 text-emerald-700 font-kids font-bold text-[10px] px-2 py-0.5 rounded-full shadow-sm mt-1">
+                          Yeşil Yaprak
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <button
@@ -315,7 +413,7 @@ export default function ColorsAdventure() {
 
                 <div className="text-center max-w-md mx-auto space-y-2">
                   <h3 className="font-kids font-bold text-lg text-slate-800">
-                    Yukarıdaki sevimli şekilleri izle ve dinle!
+                    {selectedAdventure.videoText || "Yukarıdaki sevimli şekilleri izle ve sesli anlatımı dinle!"}
                   </h3>
                   <p className="text-xs text-slate-500 leading-relaxed font-medium">
                     Hazır olduğunda yukarıdaki <strong>"Oyna & Pekiştir"</strong> sekmesine geçerek ödül yıldızını kazan!

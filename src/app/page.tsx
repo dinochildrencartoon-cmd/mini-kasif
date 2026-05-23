@@ -41,7 +41,7 @@ export default function Home() {
     },
     {
       question: "Herhangi bir taahhüt var mı? İstediğim zaman iptal edebilir miyim?",
-      answer: "Kesinlikle taahhüt yoktur. Aboneliğinizi ebeveyn paneli üzerinden saniyeler içinde tek tıkla iptal edebilirsiniz. İptal sonrasında abonelik döneminizin sonuna kadar Premium haklarınızı kullanmaya devam edersiniz.",
+      answer: "Şu anda ücretsiz planla Mini Kâşif’i kullanmaya başlayabilirsiniz. Premium ödeme sistemi aktif olduğunda taahhütsüz abonelik ve kolay iptal seçeneği sunulacaktır.",
     },
     {
       question: "3 yaşındaki bir çocuk uygulamayı tek başına kullanabilir mi?",
@@ -77,11 +77,11 @@ export default function Home() {
                 href="/pricing"
                 className="inline-flex items-center justify-center px-8 py-4 bg-secondary-light text-secondary hover:bg-secondary hover:text-white font-kids font-bold text-lg rounded-2xl transition-all cursor-pointer"
               >
-                💎 Premium Özellikleri Gör
+                Premium’u İncele
               </Link>
             </div>
             <p className="text-xs text-slate-400">
-              Mini Kâşif şu anda erken erişim aşamasındadır. İlk kullanıcı ailelerle birlikte geliştiriyoruz.
+              Mini Kâşif’i ücretsiz kullanmaya başlayabilir, Renkler kategorisindeki sınırlı içeriklerle çocuğunuzun öğrenme deneyimini keşfedebilirsiniz.
             </p>
           </div>
 
@@ -306,11 +306,11 @@ export default function Home() {
         </section>
 
         {/* 9. Pricing & Lead Capture */}
-        <section id="early-access" className="bg-slate-50 py-16 sm:py-24 border-y border-slate-100">
+        <section id="pricing-plans" className="bg-slate-50 py-16 sm:py-24 border-y border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 mb-16">
             <span className="text-xs font-bold text-primary uppercase tracking-widest">BÜTÇE DOSTU VE ŞEFFAF</span>
             <h2 className="font-kids font-bold text-3xl sm:text-4xl text-slate-800">
-              Premium Avantajları ve Erken Erişim
+              Ücretsiz ve Premium Planlar
             </h2>
           </div>
 
@@ -318,14 +318,14 @@ export default function Home() {
             {/* Price Card */}
             <div className="bg-white border-4 border-primary-light rounded-3xl p-6 sm:p-8 shadow-xl relative hover:scale-102 transition-transform duration-300">
               <span className="absolute -top-4 left-6 bg-gradient-to-r from-accent to-kids-orange text-white font-bold text-xs px-4 py-1 rounded-full shadow-sm">
-                Lansman Fırsatı
+                Premium Plan
               </span>
               <h3 className="font-kids font-bold text-2xl text-primary mt-2">Mini Kâşif Premium</h3>
               <div className="font-kids font-bold text-4xl text-slate-800 my-4">
                 99 ₺ <span className="text-base text-slate-400 font-medium">/ aylık</span>
               </div>
               <p className="text-xs text-slate-500 mb-6 leading-relaxed">
-                Mini Kâşif şu anda erken erişim aşamasındadır. Ücretsiz kullanım modeli ve Premium özellikler lansman sürecinde aktif edilecektir. Şu anda ödeme işlemi aktif değildir; ilgi durumunuzu belirtmek için formumuzu doldurabilirsiniz.
+                Mini Kâşif’i ücretsiz planla kullanmaya başlayabilirsiniz. Ücretsiz planda Renkler kategorisine sınırlı erişim sunulur. Premium plan ile tüm kategoriler, gelişmiş ebeveyn paneli ve haftalık gelişim raporları açılır.
               </p>
               <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 mb-6 font-medium">
                 <li className="flex items-center gap-2">
@@ -353,7 +353,7 @@ export default function Home() {
                 href="/app/categories"
                 className="w-full py-4.5 bg-primary text-white font-kids font-bold text-center block rounded-2xl hover:bg-primary/95 shadow-md active:translate-y-0.5 transition-all text-base cursor-pointer"
               >
-                🚀 Şimdi Ücretsiz Dene
+                Ücretsiz Başla
               </Link>
               <p className="text-center text-[10px] text-slate-400 mt-3 font-semibold">
                 Ücretsiz planda Renkler kategorisini sınırlı içerikle deneyebilirsiniz.

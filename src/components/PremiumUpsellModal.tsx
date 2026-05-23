@@ -38,7 +38,7 @@ export const PremiumUpsellModal: React.FC<PremiumUpsellModalProps> = ({
         </h3>
         
         <p className="text-sm text-slate-600 mb-6 px-4">
-          Bu öğrenme alanı Premium plan ile açılır. Çocuğunuzun tüm kategorilere (Sayılar, Şekiller, Hayvanlar...) erişmesi için Premium planı inceleyebilirsiniz.
+          Bu kategori Premium plan ile açılır. Çocuğunuzun tüm öğrenme alanlarına erişmesi için Premium’u inceleyebilirsiniz.
         </p>
 
         <div className="flex flex-col gap-3">
@@ -46,7 +46,7 @@ export const PremiumUpsellModal: React.FC<PremiumUpsellModalProps> = ({
             onClick={handleReviewPremium}
             className="w-full py-4 bg-primary text-white font-kids font-bold rounded-2xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 active:translate-y-0 transition-all text-lg cursor-pointer"
           >
-            Premium'u İncele 🚀
+            Premium ile Aç 🚀
           </button>
           
           <button

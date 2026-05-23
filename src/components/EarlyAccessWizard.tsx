@@ -63,25 +63,25 @@ export const EarlyAccessWizard: React.FC = () => {
     setStep(4);
   };
 
-  // If already applied, show confirmation view
+  // If already registered, show confirmation view
   if (earlyAccess) {
     return (
       <div className="bg-white border-4 border-success-light rounded-3xl p-8 shadow-xl text-center max-w-md mx-auto">
         <span className="text-5xl my-4 inline-block animate-bounce-logo">🎉</span>
         <h3 className="font-kids text-2xl font-bold text-success mb-2">
-          Başvurunuz Alındı!
+          Hesabınız Oluşturuldu!
         </h3>
         <p className="text-slate-600 text-sm mb-6">
-          Sevgili <strong>{earlyAccess.parentName}</strong>, Mini Kâşif lansman listesine katıldığınız için teşekkür ederiz.
+          Sevgili <strong>{earlyAccess.parentName}</strong>, Mini Kâşif ailesine katıldığınız için teşekkür ederiz. Ücretsiz planınız aktif edilmiştir.
         </p>
         <div className="bg-slate-50 p-4 rounded-2xl text-left text-xs text-slate-500 mb-6 space-y-2 border border-slate-100">
           <p>📍 <strong>E-posta:</strong> {earlyAccess.email}</p>
           <p>👶 <strong>Çocuk Yaşı:</strong> {earlyAccess.childAge} Yaş</p>
-          <p>📅 <strong>Tarih:</strong> {earlyAccess.submittedAt}</p>
+          <p>📅 <strong>Kayıt Tarihi:</strong> {earlyAccess.submittedAt}</p>
           <p>🎯 <strong>Seçilen Odak Alanları:</strong> {earlyAccess.interestReasons.join(", ")}</p>
         </div>
         <div className="text-xs text-slate-400">
-          Lansman indirim kodunuz ve davetiyeniz bu e-posta adresine gönderilecektir.
+          Ebeveyn panelinden istediğiniz zaman ekran süresi limitlerini değiştirebilir ve gelişim raporlarını inceleyebilirsiniz.
         </div>
       </div>
     );
@@ -91,7 +91,7 @@ export const EarlyAccessWizard: React.FC = () => {
     <div className="bg-white border-4 border-primary-light rounded-3xl p-6 sm:p-8 shadow-xl max-w-md mx-auto w-full">
       <div className="flex justify-between items-center mb-6">
         <h3 className="font-kids font-bold text-xl text-slate-800">
-          Erken Erişim Başvurusu
+          Ücretsiz Hesap Oluştur
         </h3>
         <span className="text-xs font-bold text-primary bg-primary-light px-3 py-1 rounded-full uppercase tracking-wider">
           Adım {step} / 3
@@ -107,7 +107,7 @@ export const EarlyAccessWizard: React.FC = () => {
       {step === 1 && (
         <form onSubmit={handleNext} className="space-y-4">
           <p className="text-xs text-slate-500">
-            Lansman öncesi sınırlı kontenjana katılmak ve özel indirim fırsatlarından yararlanmak için bilgilerinizi girin.
+            Mini Kâşif hesabınızı oluşturmak ve ücretsiz kullanıma başlamak için bilgilerinizi girin.
           </p>
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1">
@@ -191,7 +191,7 @@ export const EarlyAccessWizard: React.FC = () => {
       {step === 3 && (
         <form onSubmit={handleSubmit} className="space-y-4">
           <p className="text-xs text-slate-500">
-            Platformu en çok hangi özellik için kullanmak istersiniz? (Birden fazla seçebilirsiniz)
+            Platformu en Microsoft ve pedagojik ihtiyaçlarınıza göre en çok hangi özellik için kullanmak istersiniz? (Birden fazla seçebilirsiniz)
           </p>
           <div className="space-y-2">
             {reasonsOptions.map((reason) => (
@@ -221,7 +221,7 @@ export const EarlyAccessWizard: React.FC = () => {
               type="submit"
               className="w-2/3 py-3 bg-success hover:bg-success/95 text-white font-kids font-bold rounded-xl shadow-md hover:-translate-y-0.5 transition-all text-sm cursor-pointer"
             >
-              Başvuruyu Gönder 🏆
+              Ücretsiz Hesabımı Oluştur 🏆
             </button>
           </div>
         </form>

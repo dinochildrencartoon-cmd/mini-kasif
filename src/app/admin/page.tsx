@@ -83,19 +83,19 @@ export default function AdminDashboard() {
     setApplicants((prev) =>
       prev.map((app) => (app.id === id ? { ...app, status: "Onaylandı" } : app))
     );
-    triggerFeedback("Başvuru onaylandı, davetiye e-postası sıraya alındı.");
+    triggerFeedback("Kayıt onaylandı, bilgilendirme e-postası sıraya alındı.");
   };
 
   const handleReject = (id: string) => {
     setApplicants((prev) =>
       prev.map((app) => (app.id === id ? { ...app, status: "Reddedildi" } : app))
     );
-    triggerFeedback("Başvuru reddedildi.");
+    triggerFeedback("Kayıt reddedildi.");
   };
 
   const handleDelete = (id: string) => {
     setApplicants((prev) => prev.filter((app) => app.id !== id));
-    triggerFeedback("Başvuru kaydı sistemden silindi.");
+    triggerFeedback("Kullanıcı kaydı sistemden silindi.");
   };
 
   const triggerFeedback = (msg: string) => {
@@ -127,7 +127,7 @@ export default function AdminDashboard() {
             </span>
           </h1>
           <p className="text-slate-500 text-sm mt-1">
-            Mini Kâşif Erken Erişim listeleri, metrikleri ve sistem durum yönetimi.
+            Mini Kâşif kullanıcı kayıt listeleri, metrikleri ve sistem durum yönetimi.
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { label: "Toplam Başvuru", val: 142 + (earlyAccess ? 1 : 0), change: "+%18.2", desc: "Bu ayki yeni kayıtlar", icon: "📧", color: "border-primary-light" },
+            { label: "Toplam Kayıt", val: 142 + (earlyAccess ? 1 : 0), change: "+%18.2", desc: "Bu ayki yeni kayıtlar", icon: "📧", color: "border-primary-light" },
             { label: "Premium Dönüşüm", val: "%14.8", change: "+%2.4", desc: "Simüle ödeme tamamlayanlar", icon: "💎", color: "border-secondary-light" },
             { label: "Ort. Ekran Süresi", val: "18.4 Dk", change: "-%1.5", desc: "Günlük çocuk portalı kalımı", icon: "⏱️", color: "border-accent/30" },
             { label: "Aktif Kâşifler", val: "1,248", change: "+%8.6", desc: "Haftalık tekil çocuk sayısı", icon: "👶", color: "border-success-light" },
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
           <div className="lg:col-span-8 bg-white border border-slate-100 p-6 rounded-3xl shadow-sm space-y-4">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-kids font-bold text-lg text-slate-800">Aylık Erken Erişim Kayıt Trendi</h3>
+                <h3 className="font-kids font-bold text-lg text-slate-800">Aylık Kullanıcı Kayıt Trendi</h3>
                 <p className="text-slate-400 text-xs mt-0.5">Ocak - Mayıs 2026 Aylık Gelişim Grafiği</p>
               </div>
               <span className="text-xs font-bold text-primary bg-primary-light px-3 py-1 rounded-full">2026 Yılı</span>
@@ -226,14 +226,14 @@ export default function AdminDashboard() {
             <div className="space-y-2">
               <button
                 onClick={() => {
-                  triggerFeedback("Lansman haber bülteni sıraya alındı, 143 kişiye gönderiliyor.");
+                  triggerFeedback("Kullanıcı haber bülteni sıraya alındı, 143 kişiye gönderiliyor.");
                 }}
                 className="w-full text-left p-3.5 bg-slate-50 hover:bg-slate-100 rounded-2xl flex items-center gap-3 active:scale-99 transition-all cursor-pointer border border-slate-100"
               >
                 <span className="text-xl">📢</span>
                 <div>
                   <h4 className="font-kids font-bold text-xs text-slate-700">Tüm Listeye E-Posta Gönder</h4>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Erken erişimcilere güncelleme yolla</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Kayıtlı kullanıcılara güncelleme yolla</p>
                 </div>
               </button>
 
@@ -271,8 +271,8 @@ export default function AdminDashboard() {
         <div className="bg-white border border-slate-100 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h3 className="font-kids font-bold text-xl text-slate-800">Erken Erişim Başvuru Listesi</h3>
-              <p className="text-slate-400 text-xs mt-0.5">Kullanıcıların formu doldurarak listeye girdiği kayıtlar.</p>
+              <h3 className="font-kids font-bold text-xl text-slate-800">Kullanıcı Kayıt Listesi</h3>
+              <p className="text-slate-400 text-xs mt-0.5">Kullanıcıların formu doldurarak sisteme kaydolduğu ebeveyn listesi.</p>
             </div>
 
             {/* Filters */}

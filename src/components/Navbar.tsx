@@ -66,7 +66,7 @@ export const Navbar: React.FC = () => {
             href="/app/categories"
             className="inline-flex items-center justify-center px-6 py-2.5 bg-primary hover:bg-primary/95 text-white font-kids font-bold text-base rounded-2xl shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
           >
-            Ücretsiz Keşfet 🧒
+            Ücretsiz Başla
           </Link>
         </div>
       </div>

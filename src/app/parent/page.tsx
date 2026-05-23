@@ -245,7 +245,7 @@ export default function ParentDashboard() {
                   : "bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-800"
               }`}
             >
-              📧 Erken Erişim Başvurusu
+              👤 Hesap Durumu
             </button>
           </div>
 
@@ -588,10 +588,10 @@ export default function ParentDashboard() {
                   <div className="border border-slate-200 rounded-3xl p-6 bg-slate-50/50 space-y-6">
                     <div>
                       <h4 className="font-kids font-bold text-lg text-slate-700 flex items-center gap-2">
-                        <span>💎 Premium Üyeliğe Yükselt (Simülasyon)</span>
+                        <span>💎 Premium Plana Yükselt (Simülasyon)</span>
                       </h4>
                       <p className="text-xs text-slate-400 mt-0.5">
-                        Lansman aşamasında olduğumuz için ödeme işlemleri simüle edilmektedir. Kart bilgisi yazıp testi tamamlayabilirsiniz.
+                        Premium ödeme sistemi yakında aktif olacaktır. Şimdilik ücretsiz planla başlayabilir ve Premium özellikleri inceleyebilirsiniz. Aşağıdaki kart formu üzerinden Premium satın alımı simüle ederek tüm özellikleri test edebilirsiniz.
                       </p>
                     </div>
 
@@ -662,13 +662,13 @@ export default function ParentDashboard() {
               </div>
             )}
 
-            {/* TAB 4: Erken Erişim Başvurusu */}
+            {/* TAB 4: Hesap Durumu */}
             {activeTab === "earlyaccess" && (
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-kids font-bold text-2xl text-slate-800 mb-1">Erken Erişim Başvuru Durumu</h3>
+                  <h3 className="font-kids font-bold text-2xl text-slate-800 mb-1">Hesap Bilgileri ve Durumu</h3>
                   <p className="text-slate-500 text-xs sm:text-sm">
-                    Lansmana özel indirimler ve erken erişim sürecindeki yenilikler için başvuru kaydınız.
+                    Mini Kâşif hesap bilgileriniz ve aktif profil durumunuz.
                   </p>
                 </div>
 
@@ -677,15 +677,15 @@ export default function ParentDashboard() {
                     {/* Access Approved Status Card */}
                     <div className="p-6 bg-kids-purple/5 border-2 border-dashed border-kids-purple/30 rounded-3xl text-center space-y-3">
                       <span className="text-4xl inline-block animate-bounce">🎉</span>
-                      <h4 className="font-kids font-bold text-xl text-kids-purple">Erken Erişim Başvurunuz Alındı!</h4>
+                      <h4 className="font-kids font-bold text-xl text-kids-purple">Hesabınız Aktif!</h4>
                       <p className="text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
-                        Mini Kâşif lansmanında ilk kullanıcılara özel hediyeler, indirimler ve tüm kategorilere ücretsiz deneme süresi içeren e-posta kodunuz listeye eklenmiştir.
+                        Mini Kâşif ailesine katıldığınız için teşekkür ederiz. Ücretsiz planınız aktiftir. İstediğiniz zaman Premium plana geçiş yapabilirsiniz.
                       </p>
                     </div>
 
                     {/* Application Details Summary */}
                     <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-3">
-                      <h5 className="font-kids font-bold text-slate-700 border-b pb-2 mb-2">Başvuru Detayları</h5>
+                      <h5 className="font-kids font-bold text-slate-700 border-b pb-2 mb-2">Hesap Detayları</h5>
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
                         <div>
@@ -726,14 +726,14 @@ export default function ParentDashboard() {
                   <div className="space-y-6">
                     {/* Notice */}
                     <div className="p-4 bg-amber-50 border border-amber-100 text-amber-800 rounded-2xl text-xs sm:text-sm leading-relaxed">
-                      ⚠️ <strong>Henüz Başvuruda Bulunmadınız:</strong> Lansman indirimlerini kaçırmamak ve Mini Kâşif'in tam sürüm çıkışından anında haberdar olmak için aşağıdaki formu doldurarak listemize katılabilirsiniz.
+                      ⚠️ <strong>Profil Bilgisi Bulunamadı:</strong> Lütfen ebeveyn profilinizi tamamlamak ve ücretsiz kullanıma başlamak için aşağıdaki formu doldurun.
                     </div>
 
                     {/* Inline Form */}
                     <form onSubmit={handleEarlyAccessSubmit} className="space-y-4 max-w-md bg-slate-50 p-6 rounded-3xl border border-slate-100">
                       {formSuccess && (
                         <div className="p-4 bg-success-light border border-success/20 text-success text-xs font-semibold rounded-xl">
-                          Başvurunuz başarıyla kaydedildi!
+                          Hesabınız başarıyla oluşturuldu!
                         </div>
                       )}
                       <div>
@@ -800,7 +800,7 @@ export default function ParentDashboard() {
                         type="submit"
                         className="w-full py-3 bg-kids-purple hover:bg-kids-purple/95 text-white font-kids font-bold text-sm rounded-xl shadow-md active:translate-y-0.5 transition-all cursor-pointer mt-2"
                       >
-                        📧 Erken Erişim Listesine Katıl
+                        Ücretsiz Hesabımı Oluştur
                       </button>
                     </form>
                   </div>

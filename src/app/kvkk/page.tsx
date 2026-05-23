@@ -33,7 +33,7 @@ export default function KVKK() {
               <li>Mini Kâşif öğrenme portalının kesintisiz ve güvenli işletilmesi.</li>
               <li>Ebeveyn paneli üzerinden çocukların gelişim raporlarının gösterilmesi.</li>
               <li>Ekran süre sınırlama tercihlerinin kaydedilmesi ve uygulanması.</li>
-              <li>Erken erişim taleplerinin değerlendirilmesi ve bildirimlerin yapılması.</li>
+              <li>Kullanıcı kayıt taleplerinin değerlendirilmesi ve bildirimlerin yapılması.</li>
             </ul>
 
             <h2 className="font-kids font-bold text-xl text-slate-800 mt-8">

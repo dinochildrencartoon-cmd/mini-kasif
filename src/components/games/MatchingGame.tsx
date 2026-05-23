@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MatchingGame as MatchGameType } from "@/lib/gamesData";
 
 interface MatchingGameProps {
@@ -19,6 +19,9 @@ export const MatchingGame: React.FC<MatchingGameProps> = ({
   const [feedback, setFeedback] = useState<string>("");
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
+  const hasTriggeredCorrect = useRef(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   // Shuffle right items on load to keep it fun
   const [shuffledRightItems, setShuffledRightItems] = useState(game.rightItems);
 
@@ -32,7 +35,23 @@ export const MatchingGame: React.FC<MatchingGameProps> = ({
     setMatchedRights([]);
     setFeedback("");
     setIsCompleted(false);
+    hasTriggeredCorrect.current = false;
+
+    // Clear any existing timer
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
   }, [game]);
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   const speakText = (text: string) => {
     if (typeof window !== "undefined" && window.speechSynthesis) {
@@ -85,16 +104,17 @@ export const MatchingGame: React.FC<MatchingGameProps> = ({
 
   // Completion check
   useEffect(() => {
-    if (matchedLefts.length === game.leftItems.length && game.leftItems.length > 0 && !isCompleted) {
+    if (matchedLefts.length === game.leftItems.length && game.leftItems.length > 0 && !hasTriggeredCorrect.current) {
+      hasTriggeredCorrect.current = true;
       setIsCompleted(true);
       setFeedback(game.successMessage);
       speakText(game.successMessage);
-      const timer = setTimeout(() => {
+      
+      timerRef.current = setTimeout(() => {
         onCorrect();
       }, 2000);
-      return () => clearTimeout(timer);
     }
-  }, [matchedLefts, isCompleted, game, onCorrect]);
+  }, [matchedLefts, game, onCorrect]);
 
   return (
     <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-md space-y-6">

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useApp } from "@/context/AppContext";
 import { Mascot } from "@/components/Mascot";
 import { ParentGateModal } from "@/components/ParentGateModal";
+import { AuthGuard } from "@/components/auth/AuthGuard";
 
 export default function KidsLayout({ children }: { children: React.ReactNode }) {
   const { timeLeft, screenTimeLimit, setScreenTimeLimit } = useApp();
@@ -48,5 +49,5 @@ export default function KidsLayout({ children }: { children: React.ReactNode }) 
     );
   }
 
-  return <>{children}</>;
+  return <AuthGuard>{children}</AuthGuard>;
 }

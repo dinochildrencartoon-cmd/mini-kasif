@@ -4,10 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useApp } from "@/context/AppContext";
+import { LogoutButton } from "@/components/auth/LogoutButton";
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { isPremium } = useApp();
+  const { isPremium, user, loading, parentName } = useApp();
 
   return (
     <header className="bg-white border-b border-slate-100 shadow-xs sticky top-0 z-40">
@@ -55,19 +56,38 @@ export const Navbar: React.FC = () => {
 
         {/* CTA Buttons */}
         <div className="flex items-center gap-3">
-          <Link
-            href="/login"
-            className="hidden sm:inline-flex items-center px-4 py-2 font-kids font-bold text-sm text-slate-500 hover:text-slate-800 transition-colors"
-          >
-            Giriş Yap
-          </Link>
-          
-          <Link
-            href="/app/categories"
-            className="inline-flex items-center justify-center px-6 py-2.5 bg-primary hover:bg-primary/95 text-white font-kids font-bold text-base rounded-2xl shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
-          >
-            Ücretsiz Başla
-          </Link>
+          {loading ? (
+            <div className="h-9 w-24 bg-slate-100 rounded-xl animate-pulse" />
+          ) : user ? (
+            <>
+              <span className="hidden lg:inline text-xs font-bold text-slate-500 font-kids">
+                Merhaba, {parentName || user.email?.split("@")[0]}
+              </span>
+              <LogoutButton />
+              <Link
+                href="/app/categories"
+                className="inline-flex items-center justify-center px-5 py-2 bg-primary hover:bg-primary/95 text-white font-kids font-bold text-sm rounded-2xl shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+              >
+                Portala Git 🧒
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="hidden sm:inline-flex items-center px-4 py-2 font-kids font-bold text-sm text-slate-500 hover:text-slate-800 transition-colors"
+              >
+                Giriş Yap
+              </Link>
+              
+              <Link
+                href="/register"
+                className="inline-flex items-center justify-center px-6 py-2.5 bg-primary hover:bg-primary/95 text-white font-kids font-bold text-base rounded-2xl shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+              >
+                Ücretsiz Başla
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

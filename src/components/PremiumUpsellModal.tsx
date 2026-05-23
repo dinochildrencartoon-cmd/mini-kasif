@@ -46,14 +46,14 @@ export const PremiumUpsellModal: React.FC<PremiumUpsellModalProps> = ({
             onClick={handleReviewPremium}
             className="w-full py-4 bg-primary text-white font-kids font-bold rounded-2xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 active:translate-y-0 transition-all text-lg cursor-pointer"
           >
-            Premium ile Aç 🚀
+            Premium’u İncele
           </button>
           
           <button
             onClick={onClose}
             className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-kids font-bold rounded-2xl active:scale-98 transition-all text-sm cursor-pointer"
           >
-            Şimdilik Renkler ile Devam Et 🧒
+            Şimdilik Renkler ile Devam Et
           </button>
         </div>
       </div>

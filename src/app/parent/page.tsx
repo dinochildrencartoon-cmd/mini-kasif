@@ -23,6 +23,8 @@ export default function ParentDashboard() {
     setIsPremium,
     submitEarlyAccess,
     resetProgress,
+    childAge,
+    parentName,
   } = useApp();
 
   // Verification Gate State
@@ -36,9 +38,9 @@ export default function ParentDashboard() {
   const [showBillingSuccess, setShowBillingSuccess] = useState(false);
 
   // Early access form states
-  const [parentName, setParentName] = useState("");
+  const [formParentName, setFormParentName] = useState("");
   const [email, setEmail] = useState("");
-  const [childAge, setChildAge] = useState("4");
+  const [formChildAge, setFormChildAge] = useState("4");
   const [interestReasons, setInterestReasons] = useState<string[]>([]);
   const [formSuccess, setFormSuccess] = useState(false);
 
@@ -96,12 +98,12 @@ export default function ParentDashboard() {
 
   const handleEarlyAccessSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!parentName || !email) return;
+    if (!formParentName || !email) return;
 
     submitEarlyAccess({
-      parentName,
+      parentName: formParentName,
       email,
-      childAge,
+      childAge: formChildAge,
       interestReasons,
     });
     setFormSuccess(true);
@@ -255,6 +257,28 @@ export default function ParentDashboard() {
             {/* TAB 1: Gelişim Raporu */}
             {activeTab === "reports" && (
               <div className="space-y-8">
+                {/* Profile Overview Banner */}
+                <div className="bg-slate-50 border border-slate-100 rounded-3xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-kids font-bold text-xl text-slate-800">
+                      Merhaba, Ebeveyn {parentName || "Kullanıcı"} 👋
+                    </h3>
+                    <p className="text-xs text-slate-500 font-medium">
+                      Çocuğunuzun yaşı: <strong className="text-slate-700">{childAge ? `${childAge} yaş` : "Belirtilmemiş"}</strong>
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border border-slate-200">
+                    <span className="text-xs font-bold text-slate-400 font-kids uppercase">Mevcut Plan:</span>
+                    <span className={`font-kids font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                      isPremium 
+                        ? "bg-gradient-to-r from-accent to-kids-orange text-white" 
+                        : "bg-slate-100 text-slate-600"
+                    }`}>
+                      {isPremium ? "Premium Plan" : "Ücretsiz Plan"}
+                    </span>
+                  </div>
+                </div>
+
                 <div>
                   <h3 className="font-kids font-bold text-2xl text-slate-800 mb-1">Gelişim ve İlerleme Raporu</h3>
                   <p className="text-slate-500 text-xs sm:text-sm">
@@ -379,16 +403,16 @@ export default function ParentDashboard() {
                         </div>
                       </div>
                       <div className="absolute inset-0 flex flex-col justify-center items-center p-4 bg-white/70 rounded-2xl">
-                        <span className="text-2xl mb-1">📊</span>
-                        <h5 className="font-kids font-bold text-sm text-slate-800">Detaylı İstatistikler ve Grafikler</h5>
-                        <p className="text-xs text-slate-500 max-w-xs my-2 leading-relaxed">
-                          Hangi gün ne kadar süre kullandığı, kazanım eğrisi ve haftalık gelişim analiz grafikleri Premium üyelikte açılır.
+                        <span className="text-2xl mb-1">💎</span>
+                        <h5 className="font-kids font-bold text-base text-slate-800">Tüm kategorileri açın</h5>
+                        <p className="text-xs text-slate-500 max-w-sm my-2 leading-relaxed">
+                          Premium plan ile tüm içeriklere, haftalık gelişim raporlarına ve gelişmiş ebeveyn özelliklerine erişebilirsiniz.
                         </p>
                         <button
                           onClick={() => setActiveTab("billing")}
-                          className="px-4 py-1.5 bg-accent text-white font-kids font-bold text-xs rounded-lg hover:scale-102 hover:bg-accent/95 active:scale-98 transition-all cursor-pointer"
+                          className="px-5 py-2.5 bg-accent hover:bg-accent/95 text-white font-kids font-bold text-xs rounded-xl hover:scale-102 active:scale-98 transition-all cursor-pointer"
                         >
-                          💎 Premium'a Geç
+                          Premium’u İncele
                         </button>
                       </div>
                     </div>
@@ -741,8 +765,8 @@ export default function ParentDashboard() {
                         <input
                           type="text"
                           required
-                          value={parentName}
-                          onChange={(e) => setParentName(e.target.value)}
+                          value={formParentName}
+                          onChange={(e) => setFormParentName(e.target.value)}
                           placeholder="Ahmet Yılmaz"
                           className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-kids-purple text-slate-700"
                         />
@@ -763,8 +787,8 @@ export default function ParentDashboard() {
                       <div>
                         <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Çocuğunuzun Yaşı</label>
                         <select
-                          value={childAge}
-                          onChange={(e) => setChildAge(e.target.value)}
+                          value={formChildAge}
+                          onChange={(e) => setFormChildAge(e.target.value)}
                           className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-hidden focus:border-kids-purple text-slate-700"
                         >
                           <option value="2">2 Yaş</option>

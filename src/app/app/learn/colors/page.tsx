@@ -136,6 +136,7 @@ export default function ColorsAdventure() {
   };
 
   const handleOptionClick = (idx: number, isCorrect: boolean) => {
+    if (!selectedAdventure) return;
     if (quizSuccess) return; // already solved
 
     setSelectedOptionIdx(idx);
@@ -145,7 +146,7 @@ export default function ColorsAdventure() {
       speakText("Harika! Doğru cevap! Bir yıldız kazandın!");
       
       // Award stars & show toast
-      addStars(5);
+      addStars(5, "colors", selectedAdventure.title);
       showToast("Tebrikler! 5 Yıldız Kazandın! ⭐");
 
       // Auto trigger mission modal after short delay
@@ -174,7 +175,7 @@ export default function ColorsAdventure() {
     if (selectedAdventure) {
       // Unlock badge, complete progress
       unlockBadge(selectedAdventure.badge);
-      completeAdventure(`colors_${selectedAdventure.title}`);
+      completeAdventure(`colors_${selectedAdventure.title}`, selectedAdventure.badge);
       updateProgress("colors", 20); // add 20% progress
       
       setIsMissionOpen(false);

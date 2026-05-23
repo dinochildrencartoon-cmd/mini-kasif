@@ -5,36 +5,29 @@ import { useRouter } from "next/navigation";
 import { useApp } from "@/context/AppContext";
 import { KidsHeader } from "@/components/KidsHeader";
 import { KidsFooter } from "@/components/KidsFooter";
-import { PremiumUpsellModal } from "@/components/PremiumUpsellModal";
+import { PremiumLockModal } from "@/components/PremiumLockModal";
 
 export default function KidsCategories() {
   const router = useRouter();
   const { isPremium } = useApp();
-  const [isUpsellOpen, setIsUpsellOpen] = useState(false);
-  const [comingSoonCategory, setComingSoonCategory] = useState<string | null>(null);
+  const [isLockOpen, setIsLockOpen] = useState(false);
 
   const categories = [
     { id: "colors", title: "Renkler", emoji: "🎨", desc: "Mavi, kırmızı ve sarıyı sevimli balıklarla öğrenelim!", isFree: true, borderClass: "border-b-8 border-primary hover:border-primary/80" },
     { id: "numbers", title: "Sayılar", emoji: "🔢", desc: "1'den 10'a kadar sayalım, adetleri öğrenelim!", isFree: false, borderClass: "border-b-8 border-secondary hover:border-secondary/80" },
     { id: "shapes", title: "Şekiller", emoji: "📐", desc: "Kare, daire, üçgen ve yıldızları tanıyalım!", isFree: false, borderClass: "border-b-8 border-accent hover:border-accent/80" },
     { id: "animals", title: "Hayvanlar", emoji: "🦁", desc: "Sevimli orman ve deniz canlılarını keşfedelim!", isFree: false, borderClass: "border-b-8 border-success hover:border-success/80" },
-    { id: "emotions", title: "Duygular", emoji: "😊", desc: "Mutluluk, şaşkınlık ve hislerimizi tanıyalım!", isFree: false, borderClass: "border-b-8 border-kids-pink hover:border-kids-pink/80" },
+    { id: "emotions", title: "Duygularımız", emoji: "😊", desc: "Mutluluk, şaşkınlık ve hislerimizi tanıyalım!", isFree: false, borderClass: "border-b-8 border-kids-pink hover:border-kids-pink/80" },
     { id: "manners", title: "Görgü Kuralları", emoji: "🤝", desc: "Paylaşma, teşekkür ve nezaket kuralları!", isFree: false, borderClass: "border-b-8 border-kids-purple hover:border-kids-purple/80" },
-    { id: "english", title: "İngilizce", emoji: "🇬🇧", desc: "İlk İngilizce kelimeleri ve basit selamlaşmayı öğrenelim!", isFree: false, borderClass: "border-b-8 border-kids-orange hover:border-kids-orange/80" },
-    { id: "attention", title: "Süper Dikkat", emoji: "🧠", desc: "Odaklanma, eşleştirme ve dikkat oyunları!", isFree: false, borderClass: "border-b-8 border-kids-mint hover:border-kids-mint/80" },
+    { id: "english", title: "İngilizce Kelimeler", emoji: "🇬🇧", desc: "İlk İngilizce kelimeleri ve basit selamlaşmayı öğrenelim!", isFree: false, borderClass: "border-b-8 border-kids-orange hover:border-kids-orange/80" },
+    { id: "attention", title: "Dikkat & Mantık", emoji: "🧠", desc: "Odaklanma, eşleştirme ve dikkat oyunları!", isFree: false, borderClass: "border-b-8 border-kids-mint hover:border-kids-mint/80" },
   ];
 
   const handleCategoryClick = (cat: typeof categories[0]) => {
-    if (cat.isFree) {
-      router.push("/app/learn/colors");
+    if (cat.isFree || isPremium) {
+      router.push(`/app/category/${cat.id}`);
     } else {
-      if (isPremium) {
-        // Simulated premium is active, category is "coming soon" in MVP
-        setComingSoonCategory(cat.title);
-      } else {
-        // Show premium lock modal
-        setIsUpsellOpen(true);
-      }
+      setIsLockOpen(true);
     }
   };
 
@@ -93,42 +86,11 @@ export default function KidsCategories() {
 
       <KidsFooter />
 
-      {/* Premium Upsell Modal */}
-      <PremiumUpsellModal
-        isOpen={isUpsellOpen}
-        onClose={() => setIsUpsellOpen(false)}
+      {/* Premium Lock Modal */}
+      <PremiumLockModal
+        isOpen={isLockOpen}
+        onClose={() => setIsLockOpen(false)}
       />
-
-      {/* Coming Soon Modal */}
-      {comingSoonCategory && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="relative w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl border-4 border-kids-purple animate-float-sparkle text-center">
-            <button
-              onClick={() => setComingSoonCategory(null)}
-              className="absolute top-4 right-4 text-2xl font-bold text-slate-400 hover:text-slate-600 focus:outline-hidden"
-            >
-              ×
-            </button>
-
-            <span className="inline-block text-5xl my-4 animate-bounce-logo">🚀</span>
-            
-            <h3 className="font-kids text-2xl font-bold text-kids-purple mb-2">
-              Çok Yakında!
-            </h3>
-            
-            <p className="text-sm text-slate-600 mb-6 px-4">
-              Tebrikler, Premium üyesiniz! <strong>{comingSoonCategory}</strong> kategorisi şu anda pedagoji ekibimiz tarafından test edilmektedir. Çok yakında yeni maceralar ve oyunlarla burada yayında olacak! 🌟
-            </p>
-
-            <button
-              onClick={() => setComingSoonCategory(null)}
-              className="w-full py-3.5 bg-kids-purple hover:bg-kids-purple/95 text-white font-kids font-bold rounded-2xl transition-all text-sm cursor-pointer"
-            >
-              Harika, Bekliyorum! 🧒
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

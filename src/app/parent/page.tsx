@@ -6,6 +6,7 @@ import { useApp } from "@/context/AppContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ParentGateModal } from "@/components/ParentGateModal";
+import { supabase } from "@/lib/supabase";
 
 export default function ParentDashboard() {
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function ParentDashboard() {
     resetProgress,
     childAge,
     parentName,
+    user,
   } = useApp();
 
   // Verification Gate State
@@ -36,6 +38,9 @@ export default function ParentDashboard() {
   const [showTimeSuccess, setShowTimeSuccess] = useState(false);
   const [showResetSuccess, setShowResetSuccess] = useState(false);
   const [showBillingSuccess, setShowBillingSuccess] = useState(false);
+
+  // Db Progress state
+  const [dbProgress, setDbProgress] = useState<any[]>([]);
 
   // Early access form states
   const [formParentName, setFormParentName] = useState("");
@@ -57,8 +62,36 @@ export default function ParentDashboard() {
       } else {
         setIsGateOpen(true);
       }
+
+      // Check if redirecting from premium lock modal to billing section
+      const redirectTab = sessionStorage.getItem("parent_redirect_tab");
+      if (redirectTab) {
+        setActiveTab(redirectTab as any);
+        sessionStorage.removeItem("parent_redirect_tab");
+      }
     }
   }, []);
+
+  // Fetch real-time progress data from Supabase
+  useEffect(() => {
+    if (!user) return;
+    const fetchProgress = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("user_progress")
+          .select("*")
+          .eq("user_id", user.id);
+        if (error) {
+          console.error("Error loading progress in parent dashboard:", error);
+        } else if (data) {
+          setDbProgress(data);
+        }
+      } catch (err) {
+        console.error("Error fetching progress from DB:", err);
+      }
+    };
+    fetchProgress();
+  }, [user, starsCount]);
 
   const handleGateSuccess = () => {
     sessionStorage.setItem("mk_parent_verified", "true");
@@ -330,60 +363,133 @@ export default function ParentDashboard() {
                 <div className="space-y-4">
                   <h4 className="font-kids font-bold text-lg text-slate-800 border-b pb-2">Kategori İlerleme Durumları</h4>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {categoriesList.map((cat) => {
-                      const isCategoryAccessible = isPremium || cat.isFree;
-                      const pct = isCategoryAccessible ? (progress[cat.key] || 0) : 0;
+                  {/* Helpers inside component */}
+                  {(() => {
+                    const getCategoryStats = (catKey: string) => {
+                      const catRows = dbProgress.filter((row) => row.category_slug === catKey);
+                      const completedGames = catRows.filter((row) => row.content_slug.startsWith("game-") && row.completed).length;
+                      const totalStars = catRows.reduce((sum, row) => sum + (row.stars || 0), 0);
+                      const completedTask = catRows.some((row) => row.content_slug === "completed" && row.completed);
+                      const badgeRow = catRows.find((row) => row.badge);
+                      const badge = badgeRow ? badgeRow.badge : null;
 
-                      return (
-                        <div
-                          key={cat.key}
-                          className={`bg-white border rounded-2xl p-4 transition-all ${
-                            isCategoryAccessible ? `border-slate-100 shadow-xs` : `bg-slate-50/50 border-slate-200/60 opacity-60`
-                          }`}
-                        >
-                          <div className="flex justify-between items-start mb-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-2xl">{cat.emoji}</span>
-                              <div>
-                                <h5 className="font-kids font-bold text-sm text-slate-800">{cat.name}</h5>
-                                <p className="text-[10px] text-slate-400">{cat.desc}</p>
-                              </div>
-                            </div>
-                            
-                            {!isCategoryAccessible && (
-                              <span className="bg-red-50 text-danger border border-red-100 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1">
-                                🔒 Premium
-                              </span>
-                            )}
+                      let pct = 0;
+                      if (completedTask) {
+                        pct = 100;
+                      } else {
+                        pct = Math.min(80, completedGames * 25);
+                        if (catKey === "colors" && pct === 0) pct = 20; // default initial color progress
+                      }
 
-                            {isCategoryAccessible && (
-                              <span className="font-kids font-bold text-xs text-slate-500">{pct}%</span>
-                            )}
-                          </div>
+                      return {
+                        completedGames,
+                        totalStars,
+                        completedTask,
+                        badge,
+                        pct,
+                        totalScore: totalStars + (completedTask ? 50 : 0)
+                      };
+                    };
 
-                          {/* Progress Bar Container */}
-                          <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden mb-2">
+                    const getMostActiveCategoryKey = () => {
+                      if (dbProgress.length === 0) return null;
+                      const scores: Record<string, number> = {};
+                      categoriesList.forEach((cat) => {
+                        const stats = getCategoryStats(cat.key);
+                        scores[cat.key] = stats.totalScore;
+                      });
+                      
+                      let maxKey: string | null = null;
+                      let maxVal = 0;
+                      Object.entries(scores).forEach(([key, val]) => {
+                        if (val > maxVal) {
+                          maxVal = val;
+                          maxKey = key;
+                        }
+                      });
+                      return maxVal > 0 ? maxKey : null;
+                    };
+
+                    const mostActiveCategoryKey = getMostActiveCategoryKey();
+
+                    return (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {categoriesList.map((cat) => {
+                          const isCategoryAccessible = isPremium || cat.isFree;
+                          const stats = getCategoryStats(cat.key);
+                          const pct = isCategoryAccessible ? stats.pct : 0;
+                          const isMostActive = mostActiveCategoryKey === cat.key;
+
+                          return (
                             <div
-                              className={`h-full rounded-full transition-all duration-500 ${cat.colorClass}`}
-                              style={{ width: `${pct}%` }}
-                            />
-                          </div>
+                              key={cat.key}
+                              className={`bg-white border rounded-2xl p-5 transition-all relative overflow-hidden ${
+                                isCategoryAccessible ? `border-slate-100 shadow-xs` : `bg-slate-50/50 border-slate-200/60 opacity-60`
+                              }`}
+                            >
+                              {/* Most Active Ribbon */}
+                              {isCategoryAccessible && isMostActive && (
+                                <span className="absolute top-2 right-2 bg-rose-500 text-white font-kids font-bold text-[8px] px-2 py-0.5 rounded-full shadow-xs uppercase tracking-wider animate-pulse z-10">
+                                  🔥 En Çok İlgi Gösterilen
+                                </span>
+                              )}
 
-                          {/* Evaluation Text / Pedagogical comments */}
-                          {isCategoryAccessible ? (
-                            <p className="text-xs text-slate-500 leading-relaxed italic bg-slate-50 p-2 rounded-xl mt-2 border border-slate-100">
-                              💡 {pct > 0 ? pedagogicalReviews[cat.key] : "Çocuğunuz bu kategoriye henüz başlamadı."}
-                            </p>
-                          ) : (
-                            <p className="text-[11px] text-slate-400 leading-normal mt-2">
-                              Çocuğunuzun bu kategorideki ilerlemesini takip etmek ve uzman pedagojik yorumları almak için Premium plana geçin.
-                            </p>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+                              <div className="flex justify-between items-start mb-3">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-3xl select-none">{cat.emoji}</span>
+                                  <div>
+                                    <h5 className="font-kids font-bold text-sm text-slate-800">{cat.name}</h5>
+                                    <p className="text-[10px] text-slate-400">{cat.desc}</p>
+                                  </div>
+                                </div>
+                                
+                                {!isCategoryAccessible && (
+                                  <span className="bg-red-50 text-danger border border-red-100 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1">
+                                    🔒 Premium
+                                  </span>
+                                )}
+
+                                {isCategoryAccessible && (
+                                  <span className="font-kids font-bold text-xs text-slate-500">{pct}%</span>
+                                )}
+                              </div>
+
+                              {/* Progress Bar Container */}
+                              <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden mb-3">
+                                <div
+                                  className={`h-full rounded-full transition-all duration-500 ${cat.colorClass}`}
+                                  style={{ width: `${pct}%` }}
+                                />
+                              </div>
+
+                              {/* Interactive Child Metrics List */}
+                              {isCategoryAccessible && (
+                                <div className="grid grid-cols-2 gap-2 bg-slate-50/70 border border-slate-100 rounded-xl p-3 mb-3 text-[11px] font-medium text-slate-600">
+                                  <div>🎮 Oyunlar: <strong className="text-slate-800">{stats.completedGames} / 3</strong></div>
+                                  <div>⭐ Yıldızlar: <strong className="text-slate-800">{stats.totalStars} ⭐</strong></div>
+                                  <div className="col-span-2 border-t border-slate-100 pt-1.5 mt-0.5 flex flex-col gap-1">
+                                    <div>🏃 Görev: <span className={stats.completedTask ? "text-success font-bold" : "text-slate-500"}>{stats.completedTask ? "Tamamlandı ✅" : "Onay Bekliyor ⏳"}</span></div>
+                                    <div>🏅 Rozet: <span className={stats.badge ? "text-accent font-bold" : "text-slate-400"}>{stats.badge ? stats.badge : "Henüz Kazanılmadı ⏳"}</span></div>
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Evaluation Text / Pedagogical comments */}
+                              {isCategoryAccessible ? (
+                                <p className="text-xs text-slate-500 leading-relaxed italic bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                                  💡 {pct > 20 || (cat.key === "colors" && stats.completedGames > 0) ? pedagogicalReviews[cat.key] : "Çocuğunuz bu kategoriye henüz başlamadı."}
+                                </p>
+                              ) : (
+                                <p className="text-[11px] text-slate-400 leading-normal">
+                                  Çocuğunuzun bu kategorideki ilerlemesini takip etmek ve uzman pedagojik yorumları almak için Premium plana geçin.
+                                </p>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 {/* SVG Activity Graph section */}

@@ -310,59 +310,117 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 mb-16">
             <span className="text-xs font-bold text-primary uppercase tracking-widest">BÜTÇE DOSTU VE ŞEFFAF</span>
             <h2 className="font-kids font-bold text-3xl sm:text-4xl text-slate-800">
-              Ücretsiz ve Premium Planlar
+              Ücretsiz Başlayın, Premium ile Tüm Kategorileri Açın
             </h2>
+            <p className="text-slate-500 text-sm sm:text-base max-w-3xl mx-auto">
+              Mini Kâşif’i ücretsiz planla deneyebilir, çocuğunuz Renkler kategorisindeki sınırlı içeriklerle öğrenmeye başlayabilir. Tüm kategoriler, gelişmiş raporlar ve daha kapsamlı ebeveyn özellikleri için Premium planı tercih edebilirsiniz.
+            </p>
           </div>
 
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            {/* Price Card */}
-            <div className="bg-white border-4 border-primary-light rounded-3xl p-6 sm:p-8 shadow-xl relative hover:scale-102 transition-transform duration-300">
-              <span className="absolute -top-4 left-6 bg-gradient-to-r from-accent to-kids-orange text-white font-bold text-xs px-4 py-1 rounded-full shadow-sm">
-                Premium Plan
-              </span>
-              <h3 className="font-kids font-bold text-2xl text-primary mt-2">Mini Kâşif Premium</h3>
-              <div className="font-kids font-bold text-4xl text-slate-800 my-4">
-                99 ₺ <span className="text-base text-slate-400 font-medium">/ aylık</span>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Free Plan Card */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-100 shadow-sm flex flex-col justify-between h-full hover:scale-102 transition-transform duration-300">
+              <div>
+                <h3 className="font-kids font-bold text-2xl text-slate-700">Ücretsiz Plan</h3>
+                <h4 className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Renkler kategorisiyle başlayın.</h4>
+                <div className="font-kids font-bold text-3xl text-slate-800 my-4">0 ₺</div>
+                <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+                  Mini Kâşif’i ücretsiz planla deneyin. Renkler kategorisindeki sınırlı içeriklerle çocuğunuz kısa videolar, mini quizler, ekran dışı görevler ve basit rozet kazanımıyla öğrenmeye başlayabilir.
+                </p>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 mb-6 font-medium">
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-400 font-bold">✓</span>
+                    <span>Renkler kategorisine sınırlı erişim</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-400 font-bold">✓</span>
+                    <span>Temel çocuk öğrenme ekranı</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-400 font-bold">✓</span>
+                    <span>Mini quiz</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-400 font-bold">✓</span>
+                    <span>Ekran dışı görev</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-400 font-bold">✓</span>
+                    <span>Basit rozet kazanımı</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-slate-400 font-bold">✓</span>
+                    <span>Sınırlı ebeveyn özeti</span>
+                  </li>
+                </ul>
               </div>
-              <p className="text-xs text-slate-500 mb-6 leading-relaxed">
-                Mini Kâşif’i ücretsiz planla kullanmaya başlayabilirsiniz. Ücretsiz planda Renkler kategorisine sınırlı erişim sunulur. Premium plan ile tüm kategoriler, gelişmiş ebeveyn paneli ve haftalık gelişim raporları açılır.
-              </p>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 mb-6 font-medium">
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">✓</span>
-                  <span>8 Eğitici Kategorinin Tamamı (Renkler, Sayılar, Hayvanlar...)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">✓</span>
-                  <span>Günlük Akıllı Süre Sınırlayıcı Kilidi</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">✓</span>
-                  <span>Sınırsız Ekran Dışı Görev Önerisi</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">✓</span>
-                  <span>Detaylı Haftalık Gelişim Grafik Raporları</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary font-bold">✓</span>
-                  <span>Reklamsız, Güvenli ve Pedagojik Yapı</span>
-                </li>
-              </ul>
               <Link
                 href="/app/categories"
-                className="w-full py-4.5 bg-primary text-white font-kids font-bold text-center block rounded-2xl hover:bg-primary/95 shadow-md active:translate-y-0.5 transition-all text-base cursor-pointer"
+                className="w-full py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-kids font-bold text-center block rounded-xl transition-colors shadow-xs cursor-pointer mt-4"
               >
                 Ücretsiz Başla
               </Link>
-              <p className="text-center text-[10px] text-slate-400 mt-3 font-semibold">
-                Ücretsiz planda Renkler kategorisini sınırlı içerikle deneyebilirsiniz.
-              </p>
             </div>
 
-            {/* Early Access Wizard */}
-            <div className="w-full">
+            {/* Premium Plan Card */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border-4 border-primary-light shadow-md flex flex-col justify-between h-full relative hover:scale-102 transition-transform duration-300">
+              <span className="absolute -top-3.5 right-6 bg-gradient-to-r from-accent to-kids-orange text-white font-bold text-[10px] px-3.5 py-1 rounded-full shadow-xs uppercase tracking-wider">
+                Önerilen
+              </span>
+              <div>
+                <h3 className="font-kids font-bold text-2xl text-primary">Premium Plan</h3>
+                <h4 className="text-xs font-bold text-primary/75 mt-1 uppercase tracking-wider">Tüm kategorileri açın.</h4>
+                <div className="font-kids font-bold text-3xl text-slate-800 my-4">
+                  99 ₺ <span className="text-xs text-slate-400 font-normal">/ aylık</span>
+                </div>
+                <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+                  Premium plan ile Renkler, Sayılar, Şekiller, Hayvanlar, Duygular, Görgü Kuralları, İngilizce ve Dikkat & Mantık kategorilerine erişebilir; gelişmiş ebeveyn paneli ve haftalık gelişim raporlarıyla çocuğunuzun öğrenme sürecini daha yakından takip edebilirsiniz.
+                </p>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 mb-6 font-medium">
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Tüm kategorilere erişim</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Tüm içerikler</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Haftalık gelişim raporları</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Ekran süresi ayarı</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Tüm rozetler</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Daha fazla ekran dışı görev</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary font-bold">✓</span>
+                    <span>Gelişmiş ebeveyn paneli</span>
+                  </li>
+                </ul>
+              </div>
+              <Link
+                href="/parent"
+                className="w-full py-3.5 bg-primary text-white font-kids font-bold text-center block rounded-xl hover:bg-primary/95 shadow-md active:translate-y-0.5 transition-all text-base cursor-pointer mt-4"
+              >
+                Premium’u İncele
+              </Link>
+            </div>
+
+            {/* Registration Form Block */}
+            <div className="w-full h-full lg:self-stretch flex flex-col justify-between">
               <EarlyAccessWizard />
+              <div className="mt-6 p-5 bg-white border border-slate-100 rounded-3xl text-xs text-slate-500 text-center leading-relaxed shadow-xs">
+                ℹ️ <strong>Kategori Erişimi:</strong> Ücretsiz planda Renkler kategorisi açıktır. Diğer tüm kategoriler Premium plan ile açılır.
+              </div>
             </div>
           </div>
         </section>
